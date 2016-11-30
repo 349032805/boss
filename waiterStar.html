@@ -249,6 +249,33 @@
 	    return str;
 	}
 
+	//获取当前季度的第一天和最后一天
+	function getCurrentSeason(){
+		var startDate;
+		var endDate;
+		var currentYear =  new Date().getFullYear();
+		var currentMonth = new Date().getMonth()+1;
+		if(currentMonth ==1 || currentMonth==2 || currentMonth ==3){
+			startDate = currentYear+"-01-01";
+			endDate = currentYear+"-03-31"
+		}
+		if(currentMonth ==4 || currentMonth==5 || currentMonth ==6){
+			startDate = currentYear+"-04-01";
+			endDate = currentYear+"-06-30"
+		}
+
+		if(currentMonth ==7 || currentMonth==8 || currentMonth ==9){
+			startDate = currentYear+"-07-01";
+			endDate = currentYear+"-09-30"
+		}
+
+		if(currentMonth ==10 || currentMonth==11 || currentMonth ==12){
+			startDate = currentYear+"-10-01";
+			endDate = currentYear+"-12-31"
+		}
+		return startDate +" ~ "+endDate;
+	}
+
 
 
 	function lastPeriod(){
@@ -294,7 +321,7 @@
 
 $(document).ready(function(){
 	initBetweenDate();
-
+	getCurrentSeason();
   $(".period-btn").click(function(){
   	$(this).addClass("active-btn").siblings().removeClass("active-btn");
     var dataType = $(this).attr("data-type");
@@ -318,11 +345,13 @@ $(document).ready(function(){
 	    	 $("#betweenDate").text(dataStr);
 	    }
 
-	    if(periodType=="season"){
+	    if(dataType=="season"){
 	    	 $('#periodType').val("season");
+	    	 var dataStr = getCurrentSeason();
+	    	 $("#betweenDate").text(dataStr);
 	    }
 
-	    if(periodType=="year"){
+	    if(dataType=="year"){
 	    	 $('#periodType').val("year");
 	    }
     }
