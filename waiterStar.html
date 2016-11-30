@@ -107,14 +107,15 @@
 </style>
 <script>
 	function loadData(data){
-		alert(222);
 
-		$("#topReceive").text();//
-		$("#avgReceive").text();//
-		$("#shouleReceive").text();//
-		$("#factReceive").text();//
-		$("#totalRefund").text();//
-		$("#personNum").text();//
+		$("#likeName").text(data.score.name);//
+		$("#likeScore").text(data.score.value);//
+		$("#serviceName").text(data.orders.name);//
+		$("#serviceNum").text(data.orders.value);//
+		$("#serviceMoney").text(data.price.name);//
+		$("#moneyScore").text(data.price.value);//
+		$("#rewardName").text(data.reward.name);//
+		$("#rewardScore").text(data.reward.value);//
 	}
 
 $(document).ready(function(){
@@ -131,8 +132,8 @@ $(document).ready(function(){
 	<div id="waiterStar">
 		<!-- 时间周期 -->
 		<div class="period">
-			<button type="button" class="period-btn">周</button>
-			<button type="button" class="period-btn active-btn">月</button>
+			<button type="button" class="period-btn active-btn">周</button>
+			<button type="button" class="period-btn">月</button>
 			<button type="button" class="period-btn">季</button>
 			<button type="button" class="period-btn">年</button>
 		</div>
