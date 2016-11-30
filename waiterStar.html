@@ -154,30 +154,169 @@
             arr.push(formatDate(i==0 ? date : addDate(date,1)));
         }
         return arr;             
-    };
+    }
+
+
+    //获取当月第一天和最后一天
+	function getCurrentMonthFirst(){
+		 var date=new Date();
+		 date.setDate(1);
+		 return formatDate(date);
+	}
+
+	function getCurrentMonthLast(){
+		 var date=new Date();
+		 var currentMonth=date.getMonth();
+		 var nextMonth=++currentMonth;
+		 var nextMonthFirstDay=new Date(date.getFullYear(),nextMonth,1);
+		 var oneDay=1000*60*60*24;
+		 var  endDate = new Date(nextMonthFirstDay-oneDay);
+		 endDate = formatDate(endDate);
+		 return endDate;
+	}
+
+	//获取上一个月第一天和最后一天
+	function getPrevMonth(){
+		var year = $("#yearParam").val();
+	    var month = $("#monthParam").val();
+	     if(year ==""){
+	    	year = new Date().getFullYear();
+	    }else{
+	    	year = parseInt(year);
+	    }
+
+	    if(month==""){
+	    	month = new Date().getMonth();
+	    }else{
+	    	month = parseInt(month);
+	    }
+	    month = month+1;
+
+	    if(month==0)
+	    {
+	        month=12;
+	        year=year-1;
+	    }
+
+	     $("#yearParam").val(year);
+	    $("#monthParam").val(month);
+
+	    if (month < 10) {
+	        month = "0" + month;
+	    }
+	    var firstDay = year + "-" + month + "-" + "01";
+
+	    var myDate = new Date(year, month, 0);
+	    var lastDay = year + "-" + month + "-" + myDate.getDate();
+	    var str = firstDay+" ~ "+lastDay;
+	    return str;
+	}
+
+	//获取下一个月第一天和最后一天
+	function getNextMonth(){
+		var year = $("#yearParam").val();
+	    var month = $("#monthParam").val();
+	    if(year ==""){
+	    	year = new Date().getFullYear();
+	    }else{
+	    	year = parseInt(year);
+	    }
+
+	    if(month==""){
+	    	month = new Date().getMonth();
+	    }else{
+	    	month = parseInt(month);
+	    }
+	    // month = month+1;
+
+	    if(month==13)
+	    {
+	        month=1;
+	        year=year+1;
+	    }
+	    $("#yearParam").val(year);
+	    $("#monthParam").val(month);
+
+	    if (month < 10) {
+	        month = "0" + month;
+	    }
+	    var firstDay = year + "-" + month + "-" + "01";
+
+	    var myDate = new Date(year, month, 0);
+	    var lastDay = year + "-" + month + "-" + myDate.getDate();
+	    var str = firstDay+" ~ "+lastDay;
+	    return str;
+	}
+
+
 
 	function lastPeriod(){
-		var arr = setDate(addDate(currentFirstDate,-7));
-		var dataStr = arr[0]+" ~ "+arr[6];
-        $("#betweenDate").text(dataStr);
+		var periodType = $("#periodType").val();
+		var dataStr="";
+		var urlParam ="";
+		if(periodType=="week"){
+			var arr = setDate(addDate(currentFirstDate,-7));
+			dataStr = arr[0]+" ~ "+arr[6];
+			urlParam = "startDate="+arr[0]+"&reportType=1";
+		}
 
-        window.open("boss://waiterStar/startDate="+arr[0]+"&period=1");
+		if(periodType=="month"){
+			dataStr = getPrevMonth();
+			urlParam = "startDate="+getPrevMonth()+"&reportType=2";
+		}
+		
+ 		 $("#betweenDate").text(dataStr);
+         // window.open("boss://waiterStar/"+urlParam);
 	}
 
 	function nextPeriod(){
-		var arr = setDate(addDate(currentFirstDate,7));
-		var dataStr = arr[0]+" ~ "+arr[6];
-        $("#betweenDate").text(dataStr);
+		var periodType = $("#periodType").val();
+		var dataStr="";
+		var urlParam ="";
+		if(periodType=="week"){
+			var arr = setDate(addDate(currentFirstDate,7));
+			dataStr = arr[0]+" ~ "+arr[6];
+			urlParam = "startDate="+arr[0]+"&reportType=1";
+		}
 
-         window.open("boss://waiterStar/startDate="+arr[0]+"&period=1");
-
+		if(periodType=="month"){
+			dataStr = getNextMonth();
+			urlParam = "startDate="+getPrevMonth()+"&reportType=2";
+		}
+		
+ 		 $("#betweenDate").text(dataStr);
+         // window.open("boss://waiterStar/"+urlParam);
 	}
 
 
 $(document).ready(function(){
 	initBetweenDate();
+
   $(".period-btn").click(function(){
-    alert(11);
+  	$(this).addClass("active-btn").siblings().removeClass("active-btn");
+    var periodType = $(this).attr("data-type");
+    if(periodType =="week"){
+    	$('#periodType').val("week");
+    	initBetweenDate();
+    }
+
+    if(periodType=="month"){
+    	 $('#periodType').val("month");
+
+    	var firstDay = getCurrentMonthFirst();
+    	var endDate = getCurrentMonthLast();
+    	var dataStr = firstDay +" ~ "+endDate;
+    	 $("#betweenDate").text(dataStr);
+    }
+
+    if(periodType=="season"){
+    	 $('#periodType').val("season");
+    }
+
+    if(periodType=="year"){
+    	 $('#periodType').val("year");
+    }
+
   });
 
 });
@@ -189,11 +328,15 @@ $(document).ready(function(){
 	<div id="waiterStar">
 		<!-- 时间周期 -->
 		<div class="period">
-			<button type="button" class="period-btn active-btn">周</button>
-			<button type="button" class="period-btn">月</button>
-			<button type="button" class="period-btn">季</button>
-			<button type="button" class="period-btn">年</button>
+			<button type="button" class="period-btn active-btn" data-type="week">周</button>
+			<button type="button" class="period-btn" data-type="month">月</button>
+			<button type="button" class="period-btn" data-type="season">季</button>
+			<button type="button" class="period-btn" data-type="year">年</button>
 		</div>
+
+		<input type="hidden" id="periodType" value="week">
+		<input type="hidden" id="yearParam">
+		<input type="hidden" id="monthParam">
 
 		<!-- 时间区间显示 -->
 		<div class="between-date">
