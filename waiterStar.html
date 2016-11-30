@@ -125,6 +125,8 @@
         var weekPeriod = setDate(new Date());
         var dataStr = weekPeriod[0]+" ~ "+weekPeriod[6];
         $("#betweenDate").text(dataStr);
+
+        $("#startDateParam").val(weekPeriod[0]);
 	}
 
 	function formatDate(date){
@@ -164,7 +166,10 @@
 	function getCurrentMonthFirst(){
 		 var date=new Date();
 		 date.setDate(1);
-		 return formatDate(date);
+		 var currentMonthFirst = formatDate(date);
+
+		 $("#startDateParam").val(currentMonthFirst);
+		 return currentMonthFirst;
 	}
 
 	function getCurrentMonthLast(){
@@ -383,25 +388,34 @@
 		var dataStr="";
 		var urlParam ="";
 
-		var startDateParam = $("#startDateParam").val();
+		var startDateParam;
 		if(periodType=="week"){
 			var arr = setDate(addDate(currentFirstDate,-7));
 			dataStr = arr[0]+" ~ "+arr[6];
 			urlParam = "startDate="+arr[0]+"&reportType=1";
+
+			$("#startDateParam").val(arr[0]);
+			startDateParam = $("#startDateParam").val();
+
 		}
 
 		if(periodType=="month"){
 			var prevMonthDate = getPrevMonth();
 			dataStr = prevMonthDate;
+
+			startDateParam = $("#startDateParam").val();
 			urlParam = "startDate="+startDateParam+"&reportType=2";
 		}
 
 		if(periodType=="season"){
 			var prevSeasonDate = getPrevSeason();
 			dataStr = prevSeasonDate;
+
+			startDateParam = $("#startDateParam").val();
 			urlParam = "startDate="+startDateParam+"&reportType=3";
 		}
-		
+
+		 alert(startDateParam);
  		 $("#betweenDate").text(dataStr);
          // window.open("boss://waiterStar/"+urlParam);
 	}
@@ -411,25 +425,32 @@
 		var dataStr="";
 		var urlParam ="";
 
-		var startDateParam = $("#startDateParam").val();
+		var startDateParam;
 		if(periodType=="week"){
 			var arr = setDate(addDate(currentFirstDate,7));
 			dataStr = arr[0]+" ~ "+arr[6];
 			urlParam = "startDate="+arr[0]+"&reportType=1";
+
+			$("#startDateParam").val(arr[0]);
+			startDateParam = $("#startDateParam").val();
 		}
 
 		if(periodType=="month"){
 			var nextMonthDate = getNextMonth();
 			dataStr = nextMonthDate;
+
+			startDateParam = $("#startDateParam").val();
 			urlParam = "startDate="+startDateParam+"&reportType=2";
 		}
 
 		if(periodType=="season"){
 			var nextSeasonDate = getNextSeason();
 			dataStr = nextSeasonDate;
+
+			startDateParam = $("#startDateParam").val();
 			urlParam = "startDate="+startDateParam+"&reportType=3";
 		}
-		
+		 alert(startDateParam);
  		 $("#betweenDate").text(dataStr);
          // window.open("boss://waiterStar/"+urlParam);
 	}
@@ -437,6 +458,7 @@
 
 $(document).ready(function(){
 	initBetweenDate();
+
   $(".period-btn").click(function(){
   	$(this).addClass("active-btn").siblings().removeClass("active-btn");
     var dataType = $(this).attr("data-type");
@@ -469,6 +491,8 @@ $(document).ready(function(){
 	    if(dataType=="year"){
 	    	 $('#periodType').val("year");
 	    }
+	    var startDateParam = $("#startDateParam").val();
+	    // alert(startDateParam);
     }
 
   });
