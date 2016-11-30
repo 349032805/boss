@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+<style type="text/css">
+	#unsaleDish{
+		background-color: white;
+	}
+	.period{
+		height:40px;
+		padding:0 10px;
+		padding-top:5px;
+		border-bottom:1px solid #D2D2D2;
+		text-align: center;
+	}
+
+	.period-btn{
+		width:65px;
+		height:30px;
+		border:1px solid #FF962D;
+		border-radius: 16px;
+		margin-right:5px;
+		color:#666;
+	}
+
+	.active-btn{
+		color:white;
+		background-color: #FF962D;
+	}
+
+	.between-date{
+		height:32px;
+		line-height: 32px;
+		text-align: center;
+		color:#666;
+	}
+
+	table{
+		width:100%;
+		background-color: white;
+	}
+
+	tr,th,td{
+		height:32px;
+		font-size: 15px;
+		color:#666;
+	}
+	th{
+		font-weight: normal;
+		border-bottom: 1px solid #D2D2D2;
+	}
+	td{
+		text-align: center;
+	}
+
+	.loadmore{
+		border-top: 1px solid #D2D2D2;
+		color:#999;
+		background-color: #F3F9F9;
+		color:#666;
+	}
+
+</style>
+
+<script>
+	function loadData(data){
+		
+	}
+</script>
+  </head>
+	
+<div id="unsaleDish">
+		<!-- 时间周期 -->
+		<div class="period">
+			<button type="button" class="period-btn">周</button>
+			<button type="button" class="period-btn active-btn">月</button>
+			<button type="button" class="period-btn">季</button>
+			<button type="button" class="period-btn">年</button>
+		</div>
+
+		<!-- 时间区间显示 -->
+		<div class="between-date">
+			&lt; <span style="margin:0 10px;">2016-11-02 ~ 2016-12-02</span> &gt;
+		</div>
+
+
+		<table>
+			<thead>
+				<tr>
+					<th width="25%">菜品名称</th>
+					<th width="25%">单价(元)</th>
+					<th width="25%">销量</th>
+					<th width="25%">金额</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>鱼香肉丝</td>
+					<td>20</td>
+					<td>3</td>
+					<td>60</td>
+				</tr>
+				<tr>
+					<td>鱼香肉丝</td>
+					<td>20</td>
+					<td>3</td>
+					<td>60</td>
+				</tr>
+				<tr>
+					<td>鱼香肉丝</td>
+					<td>20</td>
+					<td>3</td>
+					<td>60</td>
+				</tr>
+				<tr>
+					<td>鱼香肉丝</td>
+					<td>20</td>
+					<td>3</td>
+					<td>60</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="loadmore">加载更多</td>
+				</tr>
+			</tbody>
+		</table>
+
+</div>
+
+		</body>
+</html>

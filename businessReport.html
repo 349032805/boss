@@ -1,0 +1,429 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!-- <script src="echarts.js"></script> -->
+    <script src="http://cdn.bootcss.com/echarts/3.3.1/echarts.min.js"></script>
+    <script src="http://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+
+     <link rel="stylesheet" href="common.css">
+<style type="text/css">
+	.period{
+		height:40px;
+		padding:0 10px;
+		padding-top:5px;
+		border-bottom:1px solid #D2D2D2;
+		background-color: white;
+		text-align: center;
+	}
+
+	.period-btn{
+		width:55px;
+		height:30px;
+		border:1px solid #FF962D;
+		border-radius: 16px;
+		margin-right:5px;
+		color:#666;
+		background-color: white;
+	}
+
+	.active-btn{
+		color:white;
+		background-color: #FF962D;
+	}
+
+	.between-date{
+		height:32px;
+		line-height: 32px;
+		text-align: center;
+		color:#666;
+		background-color: white;
+	}
+
+	.total-board{
+		padding:0 10px;
+		background: white;
+		height:90px;
+	}
+
+	.board{
+		width:48%;
+		height:100%;
+		color:white;
+		text-align: center;
+		padding-top:16px;
+	}
+	.font26{
+		font-size: 26px;
+	}
+	.font17{
+		font-size: 17px;
+	}
+
+	.line-chart{
+		height:219px;
+	}
+
+	.total-count{
+		margin-top:10px;
+		color:#666;
+		font-size: 15px;
+		background-color: white;
+	}
+
+	.theme{
+		height:35px;
+		line-height: 35px;
+		padding-left:15px;
+	}
+
+	.row{
+		height:75px;
+		border-top:1px solid #D1D1D1;
+	}
+
+	.box{
+		width:50%;
+		height:100%;
+		float:left;
+		padding-top:18px;
+		padding-left:15px;
+		position: relative;
+	}
+
+	.index-icons{
+		width:26px;
+		height:26px;
+		display: block;
+		float:left;
+		margin-top:3px;
+	}
+
+	.index-detail{
+		float:left;
+		margin-left:10px;
+	}
+
+	.total-num{
+		margin-top:5px;
+		font-size: 17px;
+	}
+
+	.vertical-line{
+		height:60px;
+		border-right:1px solid #D1D1D1;
+		position: absolute;
+		top:7px;
+		right:0;
+	}
+
+
+
+</style>
+
+<script>
+
+	function loadData(data){
+		
+	}
+
+$(document).ready(function(){
+	initChart();
+
+  $(".period-btn").click(function(){
+    alert(11);
+  });
+
+
+});
+
+function initChart(){
+	var myChart = echarts.init(document.getElementById('main')); 
+
+  		var option = {
+  			backgroundColor:'linear-gradient(to bottom, #FFF 1%, #D2E9F3)',
+		    xAxis : [
+		        {
+		            type : 'category',
+		            boundaryGap : false,
+		            data : ['周一','周二','周三','周四','周五','周六','周日'],
+		            axisLine: {
+		                lineStyle: {
+		                    color: '#FFF'
+		                }
+		            },
+		             axisLabel:{
+		            	textStyle:{
+		            		color:'#666'
+		            	}
+		            },
+		            axisTick:{
+		            	show:false
+		            },
+		            splitLine:{
+		            	show:true,
+		            	  lineStyle: {
+		                    color: '#FFF'
+		                }
+		            }
+		        }
+		    ],
+		    yAxis : [
+		        {
+		            type : 'value',
+	               	axisLine: {
+		                lineStyle: {
+		                    color: '#FFF'
+		                }
+		            },
+		            axisLabel:{
+		            	textStyle:{
+		            		color:'#666'
+		            	}
+		            },
+		             axisTick:{
+		            	show:false
+		            },
+		            splitLine:{
+		            	show:false
+		            }
+		        }
+
+		    ],
+	     //a:图表名称 b:横坐标值 c:纵坐标值
+	       tooltip: {
+		       trigger: 'item',
+		       // formatter: '日期:{b}' + '<br>' + '{a}:{c}',
+		       // formatter: '{c}',
+		       textStyle: {
+		       		fontSize: 12
+		        },
+		       axisPointer: {
+		       		// type: 'none'
+		       		lineStyle: {
+				        color: '#48b',
+				        width: 2,
+				        type: 'solid'
+				    },
+		        }
+	       },
+		    series : [
+		        {
+		            name:'酸菜鱼',
+		            type:'line',
+		            data:[130, 142, 201, 134, 90, 230, 210],
+		            symbol:'circle',
+		            itemStyle : {  
+                        normal : {  
+                            lineStyle:{  
+                               color:'#40C8E2',
+                               width:3
+                            },
+                            color:'#2E8B9D'
+                        }  
+                    },
+                   
+                    symbolSize:6,
+                    smooth:true
+		        },
+		        {
+		            name:'基围虾',
+		            type:'line',
+		            data:[120, 132, 101, 234, 190, 230, 220],
+		            symbol:'circle',
+		            itemStyle : {  
+                        normal : {  
+                            lineStyle:{  
+                               color:'#FF95CB',
+                               width:3
+                            },
+                            color:'#B87698' 
+                        },
+                    },
+                     symbolSize:6,
+                     smooth:true
+		        }
+		    ],
+		      grid: {
+		        x: 50,
+		        y: 25,
+		        x2: 10,
+		        height:160
+		      }
+		};
+                    
+
+  		 // 为echarts对象加载数据 
+        myChart.setOption(option); 
+}
+
+
+</script>
+
+  </head>
+  <body>
+	
+		<!-- 时间周期 -->
+		<div class="period">
+			<button type="button" class="period-btn">日</button>
+			<button type="button" class="period-btn active-btn">周</button>
+			<button type="button" class="period-btn">月</button>
+			<button type="button" class="period-btn">季</button>
+			<button type="button" class="period-btn">年</button>
+		</div>
+
+		<!-- 时间区间显示 -->
+		<div class="between-date">
+			<span id="leftArrow">&lt;</span> <span style="margin:0 10px;" id="betweenDate">2016-11-02 ~ 2016-12-02</span> <span id="rightArrow">&gt;</span>
+		</div>
+
+		<div class="total-board">
+			<div class="board float-left" style="background-color: #40E2D7;">
+				<p class="font26" id="topReceive">30000.00</p>
+				<p class="font17" style="margin-top:10px;">日实收最高值(￥)</p>
+			</div>
+			<div class="board float-right" style="background-color: #FFC944;">
+				<p class="font26" id="avgReceive">10000.00</p>
+				<p class="font17" style="margin-top:10px;">日实收平均值(￥)</p>
+			</div>
+		</div>
+
+		<!-- 折线图表 -->
+		<div class="line-chart" id="main"></div>
+
+		<!-- 综合统计 -->
+		<div class="total-count">
+			<div class="theme">综合统计</div>
+			<div class="row">
+				<div class="box">
+					<img src="images/money_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>应收统计(￥)</p>
+						<p class="total-num" id="shouleReceive">30000.58</p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box">
+					<img src="images/money_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>实收统计(￥)</p>
+						<p class="total-num" id="factReceive">30000.58</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<img src="images/replace_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>退菜统计(￥)</p>
+						<p class="total-num" id="totalRefund">30000.58</p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box">
+					<img src="images/person_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>用餐人数(人)</p>
+						<p class="total-num" id="personNum">30000.58</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<img src="images/order_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>订单数(单)</p>
+						<p class="total-num" id="orderNum">30000.58</p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box">
+					<img src="images/table_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>翻台率(%)</p>
+						<p class="total-num" id="tableRate">30000.58</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<img src="images/bill_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>人均消费(￥)</p>
+						<p class="total-num">30000.58</p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box"></div>
+			</div>
+		</div>
+
+		<!-- 结账方式 -->
+		<div class="total-count">
+			<div class="theme">结账方式</div>
+			<div class="row">
+				<div class="box">
+					<img src="images/card_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>线下结账(单)</p>
+						<p class="total-num">200</p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box">
+					<img src="images/weixinPay_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>微信支付(单)</p>
+						<p class="total-num">200</p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 优惠类型 -->
+		<div class="total-count">
+			<div class="theme">优惠类型</div>
+			<div class="row">
+				<div class="box">
+					<img src="images/minus_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>满减(单)</p>
+						<p class="total-num">200</p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box">
+					<img src="images/discount_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>折扣(单)</p>
+						<p class="total-num">200</p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+			</div>
+		</div>
+
+
+		</body>
+</html>
+
