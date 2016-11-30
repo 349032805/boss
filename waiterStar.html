@@ -190,7 +190,6 @@
 	    }else{
 	    	month = parseInt(month);
 	    }
-	    month = month+1;
 
 	    if(month==0)
 	    {
@@ -225,8 +224,7 @@
 	    if(month==""){
 	    	month = new Date().getMonth()+2;
 	    }else{
-	    	month = parseInt(month);
-	    	 alert(month);
+	    	month = parseInt(month)+1;
 	    }
 
 	    if(month==13)
