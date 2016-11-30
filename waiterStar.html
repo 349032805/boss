@@ -106,25 +106,70 @@
 
 </style>
 <script>
+
+
 	function loadData(data){
 
-		$("#likeName").text(data.score.name);//
+		$("#likeName").text(data.score.name);//人气
 		$("#likeScore").text(data.score.value);//
-		$("#serviceName").text(data.orders.name);//
+		$("#serviceName").text(data.orders.name);//单数
 		$("#serviceNum").text(data.orders.value);//
-		$("#serviceMoney").text(data.price.name);//
+		$("#serviceMoney").text(data.price.name);//金额
 		$("#moneyScore").text(data.price.value);//
-		$("#rewardName").text(data.reward.name);//
+		$("#rewardName").text(data.reward.name);//赏金
 		$("#rewardScore").text(data.reward.value);//
 	}
 
+	var currentFirstDate;
+	function initBetweenDate(){
+        var weekPeriod = setDate(new Date());
+        alert(weekPeriod);
+	}
+
+	function formatDate(date){
+		var year = date.getFullYear()+'-';
+        var month = (date.getMonth()+1)+'-';
+        var day = date.getDate();
+        return year+month+day;
+	}
+
+
+	function addDate(date,n){
+		 date.setDate(date.getDate()+n); 
+        return date;
+	}
+
+	function setDate(date){             
+        var week = date.getDay()-1;
+        date = addDate(date,week*-1);
+        currentFirstDate = new Date(date);
+
+        var arr = [];
+        for(var i = 0;i<7;i++){                 
+            arr.push(formatDate(i==0 ? date : addDate(date,1)));
+        }
+        return arr;             
+    };
+
+	function lastPeriod(){
+		var arr = setDate(addDate(currentFirstDate,-7));
+		alert(arr);
+	}
+
+	function nextWeek(){
+		 setDate(addDate(currentFirstDate,7));
+	}
+
+
+
 $(document).ready(function(){
+	initBetweenDate();
   $(".period-btn").click(function(){
     alert(11);
   });
 
-
 });
+
 
 </script>
   </head>
@@ -140,7 +185,7 @@ $(document).ready(function(){
 
 		<!-- 时间区间显示 -->
 		<div class="between-date">
-			<span id="leftArrow">&lt;</span> <span style="margin:0 10px;" id="betweenDate">2016-11-02 ~ 2016-12-02</span> <span id="rightArrow">&gt;</span>
+			<span id="leftArrow" onclick="lastPeriod()">&lt;</span> <span style="margin:0 10px;" id="betweenDate">2016-11-02 ~ 2016-12-02</span> <span id="rightArrow" onclick="nextPeriod()">&gt;</span>
 		</div>
 
 		<!-- 明星服务员白板 -->
