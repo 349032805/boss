@@ -123,13 +123,18 @@
 	var currentFirstDate;
 	function initBetweenDate(){
         var weekPeriod = setDate(new Date());
-        alert(weekPeriod);
+        var dataStr = weekPeriod[0]+" ~ "+weekPeriod[6];
+        $("#betweenDate").text(dataStr);
 	}
 
 	function formatDate(date){
 		var year = date.getFullYear()+'-';
         var month = (date.getMonth()+1)+'-';
         var day = date.getDate();
+        day = day+"";
+        if(day.length ==1){
+        	day = "0"+day;
+        }
         return year+month+day;
 	}
 
@@ -153,13 +158,20 @@
 
 	function lastPeriod(){
 		var arr = setDate(addDate(currentFirstDate,-7));
-		alert(arr);
+		var dataStr = arr[0]+" ~ "+arr[6];
+        $("#betweenDate").text(dataStr);
+
+        window.open("boss://waiterStar/startDate="+arr[0]+"&period=1");
 	}
 
-	function nextWeek(){
-		 setDate(addDate(currentFirstDate,7));
-	}
+	function nextPeriod(){
+		var arr = setDate(addDate(currentFirstDate,7));
+		var dataStr = arr[0]+" ~ "+arr[6];
+        $("#betweenDate").text(dataStr);
 
+         window.open("boss://waiterStar/startDate="+arr[0]+"&period=1");
+
+	}
 
 
 $(document).ready(function(){
@@ -185,7 +197,7 @@ $(document).ready(function(){
 
 		<!-- 时间区间显示 -->
 		<div class="between-date">
-			<span id="leftArrow" onclick="lastPeriod()">&lt;</span> <span style="margin:0 10px;" id="betweenDate">2016-11-02 ~ 2016-12-02</span> <span id="rightArrow" onclick="nextPeriod()">&gt;</span>
+			<span id="leftArrow" onclick="lastPeriod()">&lt;</span> <span style="margin:0 10px;" id="betweenDate"></span> <span id="rightArrow" onclick="nextPeriod()">&gt;</span>
 		</div>
 
 		<!-- 明星服务员白板 -->
