@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <script src="http://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+    <script src="zepto.min.js"></script>
     <link rel="stylesheet" href="common.css">
 <style type="text/css">
 	#waiterStar{
@@ -223,11 +223,11 @@
 	    }
 
 	    if(month==""){
-	    	month = new Date().getMonth();
+	    	month = new Date().getMonth()+2;
 	    }else{
 	    	month = parseInt(month);
+	    	 alert(month);
 	    }
-	    // month = month+1;
 
 	    if(month==13)
 	    {
@@ -294,27 +294,34 @@ $(document).ready(function(){
 
   $(".period-btn").click(function(){
   	$(this).addClass("active-btn").siblings().removeClass("active-btn");
-    var periodType = $(this).attr("data-type");
-    if(periodType =="week"){
-    	$('#periodType').val("week");
-    	initBetweenDate();
-    }
+    var dataType = $(this).attr("data-type");
+    var periodType = $("#periodType").val();
+    if(dataType != periodType){
 
-    if(periodType=="month"){
-    	 $('#periodType').val("month");
+    	$("#yearParam").val("");
+    	$("#monthParam").val("");
 
-    	var firstDay = getCurrentMonthFirst();
-    	var endDate = getCurrentMonthLast();
-    	var dataStr = firstDay +" ~ "+endDate;
-    	 $("#betweenDate").text(dataStr);
-    }
+	    if(dataType =="week"){
+	    	$('#periodType').val("week");
+	    	initBetweenDate();
+	    }
 
-    if(periodType=="season"){
-    	 $('#periodType').val("season");
-    }
+	    if(dataType=="month"){
+	    	 $('#periodType').val("month");
 
-    if(periodType=="year"){
-    	 $('#periodType').val("year");
+	    	var firstDay = getCurrentMonthFirst();
+	    	var endDate = getCurrentMonthLast();
+	    	var dataStr = firstDay +" ~ "+endDate;
+	    	 $("#betweenDate").text(dataStr);
+	    }
+
+	    if(periodType=="season"){
+	    	 $('#periodType').val("season");
+	    }
+
+	    if(periodType=="year"){
+	    	 $('#periodType').val("year");
+	    }
     }
 
   });
