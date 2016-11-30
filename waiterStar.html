@@ -188,7 +188,7 @@
 	    if(month==""){
 	    	month = new Date().getMonth();
 	    }else{
-	    	month = parseInt(month);
+	    	month = parseInt(month)-1;
 	    }
 
 	    if(month==0)
@@ -259,8 +259,9 @@
 		}
 
 		if(periodType=="month"){
-			dataStr = getPrevMonth();
-			urlParam = "startDate="+getPrevMonth()+"&reportType=2";
+			var prevMonthDate = getPrevMonth();
+			dataStr = prevMonthDate;
+			urlParam = "startDate="+prevMonthDate+"&reportType=2";
 		}
 		
  		 $("#betweenDate").text(dataStr);
@@ -278,8 +279,9 @@
 		}
 
 		if(periodType=="month"){
-			dataStr = getNextMonth();
-			urlParam = "startDate="+getPrevMonth()+"&reportType=2";
+			var nextMonthDate = getNextMonth();
+			dataStr = nextMonthDate;
+			urlParam = "startDate="+nextMonthDate+"&reportType=2";
 		}
 		
  		 $("#betweenDate").text(dataStr);
