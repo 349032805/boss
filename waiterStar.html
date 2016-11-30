@@ -207,6 +207,7 @@
 	        month = "0" + month;
 	    }
 	    var firstDay = year + "-" + month + "-" + "01";
+	    $("#startDateParam").val(firstDay);
 
 	    var myDate = new Date(year, month, 0);
 	    var lastDay = year + "-" + month + "-" + myDate.getDate();
@@ -242,6 +243,7 @@
 	        month = "0" + month;
 	    }
 	    var firstDay = year + "-" + month + "-" + "01";
+	     $("#startDateParam").val(firstDay);
 
 	    var myDate = new Date(year, month, 0);
 	    var lastDay = year + "-" + month + "-" + myDate.getDate();
@@ -253,26 +255,124 @@
 	function getCurrentSeason(){
 		var startDate;
 		var endDate;
+		var whichSeason;
 		var currentYear =  new Date().getFullYear();
 		var currentMonth = new Date().getMonth()+1;
 		if(currentMonth ==1 || currentMonth==2 || currentMonth ==3){
 			startDate = currentYear+"-01-01";
-			endDate = currentYear+"-03-31"
+			endDate = currentYear+"-03-31";
+			whichSeason =1;
 		}
 		if(currentMonth ==4 || currentMonth==5 || currentMonth ==6){
 			startDate = currentYear+"-04-01";
-			endDate = currentYear+"-06-30"
+			endDate = currentYear+"-06-30";
+			whichSeason =2;
 		}
 
 		if(currentMonth ==7 || currentMonth==8 || currentMonth ==9){
 			startDate = currentYear+"-07-01";
-			endDate = currentYear+"-09-30"
+			endDate = currentYear+"-09-30";
+			whichSeason=3;
 		}
 
 		if(currentMonth ==10 || currentMonth==11 || currentMonth ==12){
 			startDate = currentYear+"-10-01";
-			endDate = currentYear+"-12-31"
+			endDate = currentYear+"-12-31";
+			whichSeason=4;
 		}
+
+		$("#whichSeason").val(whichSeason);
+		 $("#startDateParam").val(startDate);
+		return startDate +" ~ "+endDate;
+	}
+
+	//获取上一个季度的第一天和最后一天
+	function getPrevSeason(){
+		var year = $("#yearParam").val();
+	    var whichSeason = $("#whichSeason").val();
+	    if(year ==""){
+	    	year = new Date().getFullYear();
+	    }else{
+	    	year = parseInt(year);
+	    }
+
+	  	whichSeason = parseInt(whichSeason) -1;
+
+	    if(whichSeason==0){
+	        whichSeason=4;
+	        year=year-1;
+	    }
+	    $("#yearParam").val(year);
+	    $("#whichSeason").val(whichSeason);
+
+	    var startDate;
+		var endDate;
+		if(whichSeason==1){
+			startDate = year+"-01-01";
+			endDate = year+"-03-31";
+		}
+		if(whichSeason==2){
+			startDate = year+"-04-01";
+			endDate = year+"-06-30";
+		}
+
+		if(whichSeason==3){
+			startDate = year+"-07-01";
+			endDate = year+"-09-30";
+		}
+
+		if(whichSeason==4){
+			startDate = year+"-10-01";
+			endDate = year+"-12-31";
+		}
+		$("#whichSeason").val(whichSeason);
+		 $("#startDateParam").val(startDate);
+
+		return startDate +" ~ "+endDate;
+	}
+
+	//获取下一个季度的第一天和最后一天
+	function getNextSeason(){
+		var year = $("#yearParam").val();
+	    var whichSeason = $("#whichSeason").val();
+	    if(year ==""){
+	    	year = new Date().getFullYear();
+	    }else{
+	    	year = parseInt(year);
+	    }
+
+	  	whichSeason = parseInt(whichSeason) +1;
+
+	    if(whichSeason==5){
+	        whichSeason=1;
+	        year=year+1;
+	    }
+	    $("#yearParam").val(year);
+	    $("#whichSeason").val(whichSeason);
+
+	    var startDate;
+		var endDate;
+		if(whichSeason==1){
+			startDate = year+"-01-01";
+			endDate = year+"-03-31";
+		}
+		if(whichSeason==2){
+			startDate = year+"-04-01";
+			endDate = year+"-06-30";
+		}
+
+		if(whichSeason==3){
+			startDate = year+"-07-01";
+			endDate = year+"-09-30";
+		}
+
+		if(whichSeason==4){
+			startDate = year+"-10-01";
+			endDate = year+"-12-31";
+		}
+
+		$("#whichSeason").val(whichSeason);
+		 $("#startDateParam").val(startDate);
 		return startDate +" ~ "+endDate;
 	}
 
@@ -282,6 +382,8 @@
 		var periodType = $("#periodType").val();
 		var dataStr="";
 		var urlParam ="";
+
+		var startDateParam = $("#startDateParam").val();
 		if(periodType=="week"){
 			var arr = setDate(addDate(currentFirstDate,-7));
 			dataStr = arr[0]+" ~ "+arr[6];
@@ -291,7 +393,13 @@
 		if(periodType=="month"){
 			var prevMonthDate = getPrevMonth();
 			dataStr = prevMonthDate;
-			urlParam = "startDate="+prevMonthDate+"&reportType=2";
+			urlParam = "startDate="+startDateParam+"&reportType=2";
+		}
+
+		if(periodType=="season"){
+			var prevSeasonDate = getPrevSeason();
+			dataStr = prevSeasonDate;
+			urlParam = "startDate="+startDateParam+"&reportType=3";
 		}
 		
  		 $("#betweenDate").text(dataStr);
@@ -302,6 +410,8 @@
 		var periodType = $("#periodType").val();
 		var dataStr="";
 		var urlParam ="";
+
+		var startDateParam = $("#startDateParam").val();
 		if(periodType=="week"){
 			var arr = setDate(addDate(currentFirstDate,7));
 			dataStr = arr[0]+" ~ "+arr[6];
@@ -311,7 +421,13 @@
 		if(periodType=="month"){
 			var nextMonthDate = getNextMonth();
 			dataStr = nextMonthDate;
-			urlParam = "startDate="+nextMonthDate+"&reportType=2";
+			urlParam = "startDate="+startDateParam+"&reportType=2";
+		}
+
+		if(periodType=="season"){
+			var nextSeasonDate = getNextSeason();
+			dataStr = nextSeasonDate;
+			urlParam = "startDate="+startDateParam+"&reportType=3";
 		}
 		
  		 $("#betweenDate").text(dataStr);
@@ -321,7 +437,6 @@
 
 $(document).ready(function(){
 	initBetweenDate();
-	getCurrentSeason();
   $(".period-btn").click(function(){
   	$(this).addClass("active-btn").siblings().removeClass("active-btn");
     var dataType = $(this).attr("data-type");
@@ -376,6 +491,8 @@ $(document).ready(function(){
 		<input type="hidden" id="periodType" value="week">
 		<input type="hidden" id="yearParam">
 		<input type="hidden" id="monthParam">
+		<input type="hidden" id="whichSeason">
+		<input type="hidden" id="startDateParam">
 
 		<!-- 时间区间显示 -->
 		<div class="between-date">
