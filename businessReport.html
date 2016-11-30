@@ -126,7 +126,20 @@
 <script>
 
 	function loadData(data){
-		
+
+		$("#topReceive").text();//日实收最高
+		$("#avgReceive").text();//日实收平均
+		$("#shouleReceive").text();//应收统计
+		$("#factReceive").text();//实收统计
+		$("#totalRefund").text();//退菜统计
+		$("#personNum").text();//就餐人数
+		$("#orderNum").text();//订单数
+		$("#tableRate").text();//翻台率
+		$("#avgConsume").text();//人均消费
+		$("#lineCount").text();//结账方式
+		$("#weixinPay").text();//微信支付
+		$("#fullMinus").text();//满减
+		$("#discount").text();//折扣单
 	}
 
 $(document).ready(function(){
@@ -361,7 +374,7 @@ function initChart(){
 					<img src="images/bill_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>人均消费(￥)</p>
-						<p class="total-num">30000.58</p>
+						<p class="total-num" id="avgConsume">30000.58</p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
@@ -379,7 +392,7 @@ function initChart(){
 					<img src="images/card_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>线下结账(单)</p>
-						<p class="total-num">200</p>
+						<p class="total-num" id="lineCount">200</p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
@@ -389,7 +402,7 @@ function initChart(){
 					<img src="images/weixinPay_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>微信支付(单)</p>
-						<p class="total-num">200</p>
+						<p class="total-num" id="weixinPay">200</p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
@@ -405,7 +418,7 @@ function initChart(){
 					<img src="images/minus_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>满减(单)</p>
-						<p class="total-num">200</p>
+						<p class="total-num" id="fullMinus">200</p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
@@ -415,7 +428,7 @@ function initChart(){
 					<img src="images/discount_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>折扣(单)</p>
-						<p class="total-num">200</p>
+						<p class="total-num" id="discount">200</p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
