@@ -4,10 +4,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <script src="echarts.min.js"></script>
-    <script src="zepto.min.js"></script>
-
      <link rel="stylesheet" href="common.css">
+     <script src="zepto.min.js"></script>
+      <script src="periodDate2.js"></script>
+    <script src="echarts.min.js"></script>
+   
 <style type="text/css">
 	.period{
 		height:40px;
@@ -144,12 +145,6 @@
 
 $(document).ready(function(){
 	initChart();
-
-  $(".period-btn").click(function(){
-    alert(11);
-  });
-
-
 });
 
 function initChart(){
@@ -278,18 +273,25 @@ function initChart(){
   </head>
   <body>
 	
-		<!-- 时间周期 -->
 		<div class="period">
-			<button type="button" class="period-btn">日</button>
-			<button type="button" class="period-btn active-btn">周</button>
-			<button type="button" class="period-btn">月</button>
-			<button type="button" class="period-btn">季</button>
-			<button type="button" class="period-btn">年</button>
+			<button type="button" class="period-btn active-btn" data-type="day">日</button>
+			<button type="button" class="period-btn" data-type="week">周</button>
+			<button type="button" class="period-btn" data-type="month">月</button>
+			<button type="button" class="period-btn" data-type="season">季</button>
+			<button type="button" class="period-btn" data-type="year">年</button>
 		</div>
+
+		<input type="hidden" id="periodType" value="day">
+		<input type="hidden" id="yearParam">
+		<input type="hidden" id="monthParam">
+		<input type="hidden" id="whichSeason">
+		<input type="hidden" id="startDateParam">
+
+		<input type="hidden" id="page" value="businessReport">
 
 		<!-- 时间区间显示 -->
 		<div class="between-date">
-			<span id="leftArrow">&lt;</span> <span style="margin:0 10px;" id="betweenDate">2016-11-02 ~ 2016-12-02</span> <span id="rightArrow">&gt;</span>
+			<span id="leftArrow" onclick="lastPeriod()">&lt;</span> <span style="margin:0 10px;" id="betweenDate"></span> <span id="rightArrow" onclick="nextPeriod()">&gt;</span>
 		</div>
 
 		<div class="total-board">
