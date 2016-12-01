@@ -126,6 +126,11 @@
 <script>
 
 	function loadData(data){
+		var xData =[];
+		var yData = [];
+		var yData2 =[];
+
+		for(data != null && data != ""){
 
 		var maxAmt = data.maxAmt;
 		var avgAmt = data.avgAmt;
@@ -158,10 +163,24 @@
 		$("#fullMinus").text(discountInCashOrderQty);//满减
 		$("#discount").text(discountInRateOrderQty);//折扣单
 
-		var yData2 =[];
 		for(var i=0;i<yData.length;i++){
 			yData2.push(avgAmt);
 		}
+	}else{
+		$("#topReceive").text("-");//日实收最高
+		$("#avgReceive").text("-");//日实收平均
+		$("#shouleReceive").text("-");//应收统计
+		$("#factReceive").text("-");//实收统计
+		$("#totalRefund").text("-");//退菜统计
+		$("#personNum").text("-");//就餐人数
+		$("#orderNum").text("-");//订单数
+		$("#tableRate").text("-");//翻台率
+		$("#avgConsume").text("-");//人均消费
+		$("#lineCount").text("-");//结账方式
+		$("#weixinPay").text("-");//微信支付
+		$("#fullMinus").text("-");//满减
+		$("#discount").text("-");//折扣单
+	}
 
 		initChart(xData,yData,yData2);
 	}

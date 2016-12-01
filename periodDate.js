@@ -414,6 +414,7 @@ $(document).ready(function(){
 	    }
 	    //清空table内容
 	     $("#spellData").html("");
+	     $("#loadmore").hide();
 
 	    var startDateParam = $("#startDateParam").val();
 	    var page = $("#page").val();
