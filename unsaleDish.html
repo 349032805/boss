@@ -68,11 +68,29 @@
 		display: none;
 	}
 
+	.no-data{
+		color:#999;
+		display: none;
+		position: fixed;
+		top:300px;
+		left:35%;
+	}
+
+	.no-data img{
+		width:22px;
+		height:22px;
+		vertical-align: middle;
+		margin-right:5px;
+	}
+
 </style>
 
 <script>
 
 	function loadData(data){
+		if(data !="" && data !=null){
+			$(".no-data").hide();
+
 		var dishes = data.dishes;
 		var page = data.page;
 		var totalpage = data.totalPage; 
@@ -98,7 +116,10 @@
 		$("#spellData tr:even").css("background-color","#D5E3E3");
 		$("#spellData tr:odd").css("background-color","#E3F0F0");
 
+	}else{
+		$(".no-data").show();
 	}
+}
 	function loadmore(){
 		window.open("boss://dishMore");
 	}
@@ -143,6 +164,11 @@
 				
 			</tbody>
 		</table>
+
+		<div class="no-data">
+				<img src="images/no_data.png">
+				<span>暂无数据 ~</span>
+		</div>
 
 		<div class="loadmore" onclick="loadmore()">加载更多</div>
 
