@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <script src="zepto.min.js"></script>
+     <link rel="stylesheet" href="common.css">
 
     <style type="text/css">
 	table{
@@ -27,14 +29,44 @@
 	.ranking-icon{
 		width:16px;
 		height:16px;
-		vertical-align: top;
+		margin-left:10px;
 	}
 
 </style>
 
 <script>
 	function loadData(data){
-		
+		var tableData = data;
+		var content = "";
+		for(var i=0;i<tableData.length;i++){
+			content += "<tr>";
+			if(i==0 || i==2 || i==3){
+				if(i==0){
+	content +="<td><span style='padding-left: 25px;'>NO.1<img src='images/NO_1.png' class='ranking-icon'></span></td>";
+				}
+
+				if(i==1){
+	content +="<td><span style='padding-left: 25px;'>NO.1<img src='images/NO_2.png' class='ranking-icon'></span></td>";
+				}
+
+				if(i==2){
+	content +="<td><span style='padding-left: 25px;'>NO.1<img src='images/NO_3.png' class='ranking-icon'></span></td>";
+				}
+
+
+			}else{
+				var index = i+1;
+				content +="<td>"+"No."+index+"</td>";
+			}
+
+			content += "<td>"+tableData[i].name+"</td>";
+			content += "<td>"+tableData[i].value+"</td>";
+			content += "<td>"+tableData[i].sValue+"</td>";
+			
+			content += "</tr>";
+		}
+
+		$("#spellData").html(content);
 	}
 </script>
   </head>
@@ -50,49 +82,10 @@
 					<th width="25%">评价人次</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<span style="padding-left: 25px;">NO.1&nbsp;&nbsp;<img src="/images/NO_1.png" class="ranking-icon">
-						</span>
-					</td>
-					<td>张三</td>
-					<td>4分</td>
-					<td>25</td>
-				</tr>
-				<tr>
-					<td>
-						<span style="padding-left: 25px;">NO.2&nbsp;&nbsp;<img src="/images/NO_2.png" class="ranking-icon">
-						</span>
-					</td>
-					<td>张三</td>
-					<td>4分</td>
-					<td>25</td>
-				</tr>
-				<tr>
-					<td>
-						<span style="padding-left: 25px;">NO.3&nbsp;&nbsp;<img src="/images/NO_3.png" class="ranking-icon">
-						</span>
-					</td>
-					<td>张三</td>
-					<td>4分</td>
-					<td>25</td>
-				</tr>
-				<tr>
-					<td>NO.1</td>
-					<td>张三</td>
-					<td>4分</td>
-					<td>25</td>
-				</tr>
-				<tr>
-					<td>NO.1</td>
-					<td>张三</td>
-					<td>4分</td>
-					<td>25</td>
-				</tr>
-				<tr>
+			<tbody id="spellData">
+				<!-- <tr>
 					<td colspan="4" style="border-bottom: none;color:#999;">加载更多</td>
-				</tr>
+				</tr> -->
 			</tbody>
 		</table>
 	</div>
