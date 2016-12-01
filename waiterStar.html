@@ -416,9 +416,19 @@
 			urlParam = "/startDate="+startDateParam+"&reportType=3";
 		}
 
-		 alert(startDateParam);
+		if(periodType=="year"){
+			var yearParam = $("#yearParam").val();
+			var year = parseInt(yearParam);
+			year = year -1;
+			$("#yearParam").val(year);
+			dataStr = year+"-01-01"+" ~ "+year+"-12-31";
+
+			startDateParam = year+"-01-01";
+			urlParam = "/startDate="+startDateParam+"&reportType=4";
+		}
+
  		 $("#betweenDate").text(dataStr);
-         // window.open("boss://"+page+urlParam);
+         window.open("boss://"+page+urlParam);
 	}
 
 	function nextPeriod(){
@@ -451,9 +461,20 @@
 			startDateParam = $("#startDateParam").val();
 			urlParam = "/startDate="+startDateParam+"&reportType=3";
 		}
-		 alert(startDateParam);
+
+		if(periodType=="year"){
+			var yearParam = $("#yearParam").val();
+			var year = parseInt(yearParam);
+			year = year +1;
+			$("#yearParam").val(year);
+			dataStr = year+"-01-01"+" ~ "+year+"-12-31";
+
+			startDateParam = year+"-01-01";
+			urlParam = "/startDate="+startDateParam+"&reportType=4";
+		}
+
  		 $("#betweenDate").text(dataStr);
-          // window.open("boss://"+page+urlParam);
+          window.open("boss://"+page+urlParam);
 	}
 
 
@@ -470,9 +491,13 @@ $(document).ready(function(){
     	$("#yearParam").val("");
     	$("#monthParam").val("");
 
+    	var reportType;
+
 	    if(dataType =="week"){
 	    	$('#periodType').val("week");
 	    	initBetweenDate();
+
+	    	reportType = 1;
 	    }
 
 	    if(dataType=="month"){
@@ -482,18 +507,30 @@ $(document).ready(function(){
 	    	var endDate = getCurrentMonthLast();
 	    	var dataStr = firstDay +" ~ "+endDate;
 	    	 $("#betweenDate").text(dataStr);
+
+	    	 reportType = 2;
 	    }
 
 	    if(dataType=="season"){
 	    	 $('#periodType').val("season");
 	    	 var dataStr = getCurrentSeason();
 	    	 $("#betweenDate").text(dataStr);
+
+	    	 reportType = 3;
 	    }
 
 	    if(dataType=="year"){
 	    	 $('#periodType').val("year");
+	    	 var currentYear = new Date().getFullYear();
+	    	 $("#yearParam").val(currentYear);
+	    	 $("#startDateParam").val(currentYear+"-01-01");
+	    	 dataStr = currentYear+"-01-01"+" ~ "+currentYear+"-12-31";
+	    	 $("#betweenDate").text(dataStr);
+
+	    	 reportType = 4;
 	    }
-	    // var startDateParam = $("#startDateParam").val();
+	    var startDateParam = $("#startDateParam").val();
+	    window.open("boss://"+page+"/startDate="+startDateParam+"&reportType="+reportType;
     }
 
   });
