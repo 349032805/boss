@@ -270,7 +270,7 @@ var currentFirstDate;
 		if(periodType=="week"){
 			var arr = setDate(addDate(currentFirstDate,-7));
 			dataStr = arr[0]+" ~ "+arr[6];
-			urlParam = "startDate="+arr[0]+"&reportType=1";
+			urlParam = "/?startDate="+arr[0]+"&reportType=1";
 
 			$("#startDateParam").val(arr[0]);
 			startDateParam = $("#startDateParam").val();
@@ -415,3 +415,8 @@ $(document).ready(function(){
   });
 
 });
+
+
+function gotoRank(dataType){
+	window.open("boss://waiterRanking?type="+dataType);
+}
