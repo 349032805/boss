@@ -101,24 +101,92 @@
 		margin-top:10px;
 	}
 
-	.name-score{
+	.person-name{
+		margin-top:15px;
+	}
+
+	.score{
 		margin-top:10px;
 	}
 
 </style>
 <script>
 
-
 	function loadData(data){
+		if(data !=null && data !=""){
+			$(".person-name").css("color","#000");
 
-		$("#likeName").text(data.score.name);//人气
-		$("#likeScore").text(data.score.value);//
-		$("#serviceName").text(data.orders.name);//单数
-		$("#serviceNum").text(data.orders.value);//
-		$("#serviceMoney").text(data.price.name);//金额
-		$("#moneyScore").text(data.price.value);//
-		$("#rewardName").text(data.reward.name);//赏金
-		$("#rewardScore").text(data.reward.value);//
+			//头像
+			// var likeHead = data.score.head;
+			// if(likeHead !=null && likeHead !=""){
+			// 	$("#likeHead").attr("src",likeHead)
+			// }else{
+			// 	$("#likeHead").attr("src","images/default_head.png")
+			// }
+
+			// var serviceHead = data.orders.head;
+			// if(serviceHead !=null && serviceHead !=""){
+			// 	$("#serviceHead").attr("src",serviceHead)
+			// }else{
+			// 	$("#serviceHead").attr("src","images/default_head.png")
+			// }
+
+			// var moneyHead = data.price.head;
+			// if(moneyHead !=null && moneyHead !=""){
+			// 	$("#moneyHead").attr("src",moneyHead)
+			// }else{
+			// 	$("#moneyHead").attr("src","images/default_head.png")
+			// }
+
+			// var rewardHead = data.reward.head;
+			// if(rewardHead !=null && rewardHead !=""){
+			// 	$("#rewardHead").attr("src",rewardHead)
+			// }else{
+			// 	$("#rewardHead").attr("src","images/default_head.png")
+			// }
+
+			var likeName = data.score.name;
+			if(likeName !=null && likeName !=""){
+				$("#likeName").text(data.score.name);//人气
+				$("#likeScore").text(data.score.value+"分");
+			}else{
+				$("#likeName").text("暂无数据").css("color","#999");
+				$("#likeScore").text("");
+			}
+
+			var serviceName =data.orders.name;
+			if(serviceName !=null && serviceName !=""){
+				$("#serviceName").text(data.orders.name);//单数
+				$("#serviceNum").text(data.orders.value+"桌");
+			}else{
+				$("#serviceName").text("暂无数据").css("color","#999");
+				$("#serviceNum").text("");
+			}
+
+			var moneyName = data.price.name;
+			if(moneyName !=null && moneyName !=""){
+				$("#moneyName").text(data.price.name);//金额
+				$("#moneyTotal").text(data.price.value+"桌");
+			}else{
+				$("#moneyName").text("暂无数据").css("color","#999");
+				$("#moneyTotal").text("");
+			}
+
+			var rewardName = data.reward.name;
+			if(rewardName !=null && rewardName !=""){
+				$("#rewardName").text(data.reward.name);//赏金
+				$("#rewardTotal").text(data.reward.value+"桌");
+			}else{
+				$("#rewardName").text("暂无数据").css("color","#999");
+				$("#rewardTotal").text("");
+			}
+			
+		}else{
+			$(".score").text("");
+			$(".person-name").text("暂无数据").css("color","#999");
+			$(".head").attr("src","images/default_head.png")
+
+		}
 	}
 
 </script>
@@ -152,25 +220,25 @@
 				<div style="height:223px;">
 					<div class="one-board float-left" onclick='gotoRank("like")'>
 						<div class="circle">
-							<img src="images/head.png" class="head">
+							<img src="" class="head" id="likeHead">
 						</div>
 						<div class="rect">
 							<img src="images/crown.png" class="crown">
 							<p class="win-title">评价人气 NO.1</p>
-							<p class="name-score" style="margin-top:15px;" id="likeName">张三</p>
-							<p class="name-score" id="likeScore">4.9分</p>
+							<p class="person-name" id="likeName"></p>
+							<p class="score" id="likeScore">4.9分</p>
 						</div>
 					</div>
 
 					<div class="one-board float-right" onclick='gotoRank("service")'>
 						<div class="circle">
-							<img src="images/head.png" class="head">
+							<img src="" class="head" id="serviceHead">
 						</div>
 						<div class="rect">
 							<img src="images/crown.png" class="crown">
 							<p class="win-title">服务单数 NO.1</p>
-							<p class="name-score" style="margin-top:15px;" id="serviceName">张三</p>
-							<p class="name-score" id="serviceNum">20桌</p>
+							<p class="person-name" id="serviceName"></p>
+							<p class="score" id="serviceNum"></p>
 						</div>
 					</div>
 				</div>
@@ -178,24 +246,24 @@
 				<div style="margin-top:20px;height:223px;">
 					<div class="one-board float-left" onclick='gotoRank("money")'>
 						<div class="circle">
-							<img src="images/head.png" class="head">
+							<img src="" class="head" id="moneyHead">
 						</div>
 						<div class="rect">
 							<img src="images/crown.png" class="crown">
 							<p class="win-title">服务金额 NO.1</p>
-							<p class="name-score" style="margin-top:15px;" id="serviceMoney">5,0000元</p>
-							<p class="name-score" id="moneyScore">4.9分</p>
+							<p class="person-name" id="moneyName"></p>
+							<p class="score" id="moneyTotal"></p>
 						</div>
 					</div>
 					<div class="one-board float-right" onclick='gotoRank("reward")'>
 						<div class="circle">
-							<img src="images/head.png" class="head">
+							<img src="" class="head" id="rewardHead">
 						</div>
 						<div class="rect">
 							<img src="images/crown.png" class="crown">
 							<p class="win-title">获得赏金 NO.1</p>
-							<p class="name-score" style="margin-top:15px;" id="rewardName">张三</p>
-							<p class="name-score" id="rewardScore">4.9分</p>
+							<p class="person-name" id="rewardName"></p>
+							<p class="score" id="rewardTotal"></p>
 						</div>
 					</div>
 				</div>
