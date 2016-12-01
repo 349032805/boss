@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <script src="zepto.min.js"></script>
+     <script src="jquery.min.js"></script>
      <link rel="stylesheet" href="common.css">
      <script src="periodDate.js"></script>
 <style type="text/css">
@@ -95,6 +95,8 @@
 			$(".loadmore").hide();
 		}
 
+		$("#spellData tr:even").css("background-color","#D5E3E3");
+		$("#spellData tr:odd").css("background-color","#E3F0F0");
 
 	}
 	function loadmore(){
