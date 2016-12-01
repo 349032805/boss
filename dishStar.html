@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
      <link rel="stylesheet" href="common.css">
+      <script src="zepto.min.js"></script>
      <script src="echarts.min.js"></script>
 <style type="text/css">
 	.period{
@@ -225,6 +226,42 @@
 <script>
 	function loadData(data){
 		
+	}
+
+	window.onload = function(){
+		initChart();
+	}
+
+	function initChart(){
+		var myChart = echarts.init(document.getElementById('main')); 
+        
+        var option = {
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    calculable : true,
+		    series : [
+		        {
+		            name:'销售金额',
+		            type:'pie',
+		            radius : [0, 80],
+		            center : ['50%', 110],
+		            roseType : 'radius',
+		            data:[
+		                {value:10, name:'其他'},
+		                {value:5, name:'基围虾'},
+		                {value:15, name:'红烧带鱼'},
+		                {value:25, name:'酸菜鱼'}
+		            ]
+		        }
+		       
+		    ]
+		};
+                    
+
+        // 为echarts对象加载数据 
+        myChart.setOption(option); 
 	}
 </script>
   </head>

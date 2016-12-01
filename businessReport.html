@@ -126,17 +126,16 @@
 	.no-data img{
 		width:22px;
 		height:22px;
+		vertical-align: middle;
+		margin-right:5px;
 	}
 
 	.no-data{
 		position: absolute;
-		top:30px;
-		left:30px;
+		top:100px;
+		left:35%;
 		z-index: 10000;
 		color:#999;
-
-		width:200px;
-		height:130px;
 	}
 
 
@@ -368,10 +367,11 @@ function initChart(xData,yData,yData2){
 		<div class="chart-all">
 			<div class="line-chart" id="main"></div>
 			<div class="no-data">
-				<img src="images/no_data.png" class="no-data">
-				暂无数据 ~
+				<img src="images/no_data.png">
+				<span>暂无数据 ~</span>
 			</div>
 		</div>
+
 
 		<!-- 综合统计 -->
 		<div class="total-count">

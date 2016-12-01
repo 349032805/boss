@@ -410,7 +410,6 @@ $(document).ready(function(){
 
 	    	 reportType = 4;
 
-
 	    }
 	    //清空table内容
 	     $("#spellData").html("");
