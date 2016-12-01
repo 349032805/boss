@@ -376,6 +376,7 @@ $(document).ready(function(){
 	    	initBetweenDate();
 
 	    	reportType = 1;
+
 	    }
 
 	    if(dataType=="month"){
@@ -387,6 +388,7 @@ $(document).ready(function(){
 	    	 $("#betweenDate").text(dataStr);
 
 	    	 reportType = 2;
+
 	    }
 
 	    if(dataType=="season"){
@@ -395,6 +397,7 @@ $(document).ready(function(){
 	    	 $("#betweenDate").text(dataStr);
 
 	    	 reportType = 3;
+
 	    }
 
 	    if(dataType=="year"){
@@ -406,7 +409,12 @@ $(document).ready(function(){
 	    	 $("#betweenDate").text(dataStr);
 
 	    	 reportType = 4;
+
+
 	    }
+	    //清空table内容
+	     $("#spellData").html("");
+
 	    var startDateParam = $("#startDateParam").val();
 	    var page = $("#page").val();
 	    window.open("boss://"+page+"/?startDate="+startDateParam+"&reportType="+reportType);

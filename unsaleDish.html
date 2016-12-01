@@ -76,6 +76,7 @@
 		var dishes = data.dishes;
 		var page = data.page;
 		var totalpage = data.totalPage; 
+
 		var content = "";
 		for(var i=0;i<dishes.length;i++){
 			content += "<tr>";
@@ -90,9 +91,10 @@
 			$(".loadmore").show();
 		}
 
-		if(page = totalpage){
+		if(page == totalpage){
 			$(".loadmore").hide();
 		}
+
 
 	}
 	function loadmore(){

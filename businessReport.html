@@ -20,7 +20,7 @@
 	}
 
 	.period-btn{
-		width:55px;
+		width:50px;
 		height:30px;
 		border:1px solid #FF962D;
 		border-radius: 16px;
@@ -126,28 +126,47 @@
 <script>
 
 	function loadData(data){
-		alert(111);
 
-		$("#topReceive").text();//日实收最高
-		$("#avgReceive").text();//日实收平均
-		$("#shouleReceive").text();//应收统计
-		$("#factReceive").text();//实收统计
-		$("#totalRefund").text();//退菜统计
-		$("#personNum").text();//就餐人数
-		$("#orderNum").text();//订单数
-		$("#tableRate").text();//翻台率
-		$("#avgConsume").text();//人均消费
-		$("#lineCount").text();//结账方式
-		$("#weixinPay").text();//微信支付
-		$("#fullMinus").text();//满减
-		$("#discount").text();//折扣单
+		var maxAmt = data.maxAmt;
+		var avgAmt = data.avgAmt;
+		var arAmt = data.arAmt;
+		var paidAmt = data.paidAmt;
+		var cxlAmt = data.cxlAmt;
+		var guestQty = data.guestQty;
+		var orderQty = data.orderQty;
+		var avgTableUsedTimes = data.avgTableUsedTimes;
+		var avgGuestArAmt = data.avgGuestArAmt;
+		var offlinePaidOrderQty = data.offlinePaidOrderQty;
+		var wechatPaidOrderQty = data.wechatPaidOrderQty;
+		var discountInCashOrderQty = data.discountInCashOrderQty;
+		var discountInRateOrderQty = data.discountInRateOrderQty;
+
+		var xData = data.xData;
+		var yData = data.yData;
+
+		$("#topReceive").text(maxAmt);//日实收最高
+		$("#avgReceive").text(avgAmt);//日实收平均
+		$("#shouleReceive").text(arAmt);//应收统计
+		$("#factReceive").text(paidAmt);//实收统计
+		$("#totalRefund").text(cxlAmt);//退菜统计
+		$("#personNum").text(guestQty);//就餐人数
+		$("#orderNum").text(orderQty);//订单数
+		$("#tableRate").text(avgTableUsedTimes);//翻台率
+		$("#avgConsume").text(avgGuestArAmt);//人均消费
+		$("#lineCount").text(offlinePaidOrderQty);//结账方式
+		$("#weixinPay").text(wechatPaidOrderQty);//微信支付
+		$("#fullMinus").text(discountInCashOrderQty);//满减
+		$("#discount").text(discountInRateOrderQty);//折扣单
+
+		var yData2 =[];
+		for(var i=0;i<yData.length;i++){
+			yData2.push(avgAmt);
+		}
+
+		initChart(xData,yData,yData2);
 	}
 
-$(document).ready(function(){
-	initChart();
-});
-
-function initChart(){
+function initChart(xData,yData,yData2){
 	var myChart = echarts.init(document.getElementById('main')); 
 
   		var option = {
@@ -156,7 +175,7 @@ function initChart(){
 		        {
 		            type : 'category',
 		            boundaryGap : false,
-		            data : ['周一','周二','周三','周四','周五','周六','周日'],
+		            data : xData,
 		            axisLine: {
 		                lineStyle: {
 		                    color: '#FFF'
@@ -219,9 +238,9 @@ function initChart(){
 	       },
 		    series : [
 		        {
-		            name:'酸菜鱼',
+		            name:'日实收最高',
 		            type:'line',
-		            data:[130, 142, 201, 134, 90, 230, 210],
+		            data:yData,
 		            symbol:'circle',
 		            itemStyle : {  
                         normal : {  
@@ -237,9 +256,9 @@ function initChart(){
                     smooth:true
 		        },
 		        {
-		            name:'基围虾',
+		            name:'日实收平均',
 		            type:'line',
-		            data:[120, 132, 101, 234, 190, 230, 220],
+		            data:yData2,
 		            symbol:'circle',
 		            itemStyle : {  
                         normal : {  
@@ -296,11 +315,11 @@ function initChart(){
 
 		<div class="total-board">
 			<div class="board float-left" style="background-color: #40E2D7;">
-				<p class="font26" id="topReceive">30000.00</p>
+				<p class="font26" id="topReceive"></p>
 				<p class="font17" style="margin-top:10px;">日实收最高值(￥)</p>
 			</div>
 			<div class="board float-right" style="background-color: #FFC944;">
-				<p class="font26" id="avgReceive">10000.00</p>
+				<p class="font26" id="avgReceive"></p>
 				<p class="font17" style="margin-top:10px;">日实收平均值(￥)</p>
 			</div>
 		</div>
@@ -316,7 +335,7 @@ function initChart(){
 					<img src="images/money_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>应收统计(￥)</p>
-						<p class="total-num" id="shouleReceive">30000.58</p>
+						<p class="total-num" id="shouleReceive"></p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
@@ -326,7 +345,7 @@ function initChart(){
 					<img src="images/money_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>实收统计(￥)</p>
-						<p class="total-num" id="factReceive">30000.58</p>
+						<p class="total-num" id="factReceive"></p>
 					</div>
 				</div>
 			</div>
@@ -336,7 +355,7 @@ function initChart(){
 					<img src="images/replace_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>退菜统计(￥)</p>
-						<p class="total-num" id="totalRefund">30000.58</p>
+						<p class="total-num" id="totalRefund"></p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
@@ -346,7 +365,7 @@ function initChart(){
 					<img src="images/person_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>用餐人数(人)</p>
-						<p class="total-num" id="personNum">30000.58</p>
+						<p class="total-num" id="personNum"></p>
 					</div>
 				</div>
 			</div>
@@ -356,7 +375,7 @@ function initChart(){
 					<img src="images/order_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>订单数(单)</p>
-						<p class="total-num" id="orderNum">30000.58</p>
+						<p class="total-num" id="orderNum"></p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
@@ -366,7 +385,7 @@ function initChart(){
 					<img src="images/table_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>翻台率(%)</p>
-						<p class="total-num" id="tableRate">30000.58</p>
+						<p class="total-num" id="tableRate"></p>
 					</div>
 				</div>
 			</div>
@@ -376,7 +395,7 @@ function initChart(){
 					<img src="images/bill_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>人均消费(￥)</p>
-						<p class="total-num" id="avgConsume">30000.58</p>
+						<p class="total-num" id="avgConsume"></p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
@@ -394,7 +413,7 @@ function initChart(){
 					<img src="images/card_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>线下结账(单)</p>
-						<p class="total-num" id="lineCount">200</p>
+						<p class="total-num" id="lineCount"></p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
@@ -404,7 +423,7 @@ function initChart(){
 					<img src="images/weixinPay_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>微信支付(单)</p>
-						<p class="total-num" id="weixinPay">200</p>
+						<p class="total-num" id="weixinPay"></p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
@@ -420,7 +439,7 @@ function initChart(){
 					<img src="images/minus_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>满减(单)</p>
-						<p class="total-num" id="fullMinus">200</p>
+						<p class="total-num" id="fullMinus"></p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
@@ -430,7 +449,7 @@ function initChart(){
 					<img src="images/discount_icon.png" class="index-icons">
 					<div class="index-detail">
 						<p>折扣(单)</p>
-						<p class="total-num" id="discount">200</p>
+						<p class="total-num" id="discount"></p>
 					</div>
 					 <!-- 分割线 -->
 					 <div class="vertical-line"></div>
