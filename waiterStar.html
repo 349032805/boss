@@ -121,6 +121,7 @@
 	}
 
 	var currentFirstDate;
+	var page = $("#page").val();
 	function initBetweenDate(){
         var weekPeriod = setDate(new Date());
         var dataStr = weekPeriod[0]+" ~ "+weekPeriod[6];
@@ -412,12 +413,12 @@
 			dataStr = prevSeasonDate;
 
 			startDateParam = $("#startDateParam").val();
-			urlParam = "startDate="+startDateParam+"&reportType=3";
+			urlParam = "/startDate="+startDateParam+"&reportType=3";
 		}
 
 		 alert(startDateParam);
  		 $("#betweenDate").text(dataStr);
-         // window.open("boss://waiterStar/"+urlParam);
+         // window.open("boss://"+page+urlParam);
 	}
 
 	function nextPeriod(){
@@ -429,7 +430,7 @@
 		if(periodType=="week"){
 			var arr = setDate(addDate(currentFirstDate,7));
 			dataStr = arr[0]+" ~ "+arr[6];
-			urlParam = "startDate="+arr[0]+"&reportType=1";
+			urlParam = "/startDate="+arr[0]+"&reportType=1";
 
 			$("#startDateParam").val(arr[0]);
 			startDateParam = $("#startDateParam").val();
@@ -440,7 +441,7 @@
 			dataStr = nextMonthDate;
 
 			startDateParam = $("#startDateParam").val();
-			urlParam = "startDate="+startDateParam+"&reportType=2";
+			urlParam = "/startDate="+startDateParam+"&reportType=2";
 		}
 
 		if(periodType=="season"){
@@ -448,16 +449,17 @@
 			dataStr = nextSeasonDate;
 
 			startDateParam = $("#startDateParam").val();
-			urlParam = "startDate="+startDateParam+"&reportType=3";
+			urlParam = "/startDate="+startDateParam+"&reportType=3";
 		}
 		 alert(startDateParam);
  		 $("#betweenDate").text(dataStr);
-         // window.open("boss://waiterStar/"+urlParam);
+          // window.open("boss://"+page+urlParam);
 	}
 
 
 $(document).ready(function(){
 	initBetweenDate();
+	page = $("#page").val();
 
   $(".period-btn").click(function(){
   	$(this).addClass("active-btn").siblings().removeClass("active-btn");
@@ -491,8 +493,7 @@ $(document).ready(function(){
 	    if(dataType=="year"){
 	    	 $('#periodType').val("year");
 	    }
-	    var startDateParam = $("#startDateParam").val();
-	    // alert(startDateParam);
+	    // var startDateParam = $("#startDateParam").val();
     }
 
   });
@@ -517,6 +518,8 @@ $(document).ready(function(){
 		<input type="hidden" id="monthParam">
 		<input type="hidden" id="whichSeason">
 		<input type="hidden" id="startDateParam">
+
+		<imput type="hidden" id="page" value="waiterStar">
 
 		<!-- 时间区间显示 -->
 		<div class="between-date">
