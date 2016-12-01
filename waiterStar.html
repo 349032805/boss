@@ -428,6 +428,7 @@
 		}
 
  		 $("#betweenDate").text(dataStr);
+ 		 var page =$("#page").val();
          window.open("boss://"+page+urlParam);
 	}
 
@@ -474,13 +475,13 @@
 		}
 
  		 $("#betweenDate").text(dataStr);
+ 		 var page =$("#page").val();
           window.open("boss://"+page+urlParam);
 	}
 
 
 $(document).ready(function(){
 	initBetweenDate();
-	page = $("#page").val();
 
   $(".period-btn").click(function(){
   	$(this).addClass("active-btn").siblings().removeClass("active-btn");
@@ -530,7 +531,7 @@ $(document).ready(function(){
 	    	 reportType = 4;
 	    }
 	    var startDateParam = $("#startDateParam").val();
-	    page = $("#page").val();
+	    var page = $("#page").val();
 	    window.open("boss://"+page+"/startDate="+startDateParam+"&reportType="+reportType);
     }
 
@@ -557,7 +558,7 @@ $(document).ready(function(){
 		<input type="hidden" id="whichSeason">
 		<input type="hidden" id="startDateParam">
 
-		<imput type="hidden" id="page" value="waiterStar">
+		<input type="hidden" id="page" value="waiterStar">
 
 		<!-- 时间区间显示 -->
 		<div class="between-date">
