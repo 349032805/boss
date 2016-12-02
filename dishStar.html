@@ -486,7 +486,7 @@
 
 	//饼图数据
 	function loadChartData(data){
-		initChart();
+		initChart(data);
 	}
 
 	// window.onload = function(){
@@ -498,7 +498,7 @@
 			[
 			    {
 			      "dishName": "蜂蜜柠檬汁",
-			      "likeNbr": 227,
+			      "likeNbr": 228,
 			      "percentage": 7.69,
 			      "soldAmt": 2951,
 			      "soldQty": 227,
@@ -506,7 +506,7 @@
 			    },
 			    {
 			      "dishName": "金桔柠檬",
-			      "likeNbr": 96,
+			      "likeNbr": 114,
 			      "percentage": 8.33,
 			      "soldAmt": 2712,
 			      "soldQty": 226,
@@ -523,13 +523,22 @@
   			];
 		
 
-		loadColumnData(data);
+		loadChartData(data);
 	}
 
 
-	function initChart(){
+	function initChart(data){
+		var firstName =data[0].dishName;
+		var firstSoldAmt = data[0].soldAmt;
+
+		var secondName =data[1].dishName;
+		var secondSoldAmt = data[1].soldAmt;
+
+		var thirdName =data[2].dishName;
+		var thirdSoldAmt = data[2].soldAmt;
+
+
 		var myChart = echarts.init(document.getElementById('main')); 
-        
         var option = {
 		    tooltip : {
 		        trigger: 'item',
@@ -543,11 +552,18 @@
 		            radius : [0, 80],
 		            center : ['50%', 110],
 		            roseType : 'radius',
-		            data:[
-		                {value:10, name:'其他'},
-		                {value:5, name:'基围虾'},
-		                {value:15, name:'红烧带鱼'},
-		                {value:25, name:'酸菜鱼'}
+		            data:[{
+		            	value:firstSoldAmt, 
+		            	name:firstName
+		            },
+		                {
+		                	value:secondSoldAmt, 
+		                	name:secondName
+		                },
+		                {
+		                	value:thirdSoldAmt, 
+		                	name:thirdName
+		                }
 		            ]
 		        }
 		       
