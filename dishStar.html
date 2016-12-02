@@ -517,12 +517,18 @@
 	//饼图数据
 	function loadChartData(data){
 		if(data !=null && data !="" && data !="null"){
+			var firstObj = data.dishes[0];
+			if(firstObj != null && firstObj !="" && firstObj != "null"){
+				$("#noData2").hide();
+				$("#dishTable").show();
 
-			$("#noData2").hide();
-			$("#dishTable").show();
-
-			initChart(data);
-			spellTable(data);
+				initChart(data);
+				spellTable(data);
+			}else{
+				$("#noData2").show();
+				$("#dishTable").hide();
+			}
+			
 		}else{
 			$("#noData2").show();
 			$("#dishTable").hide();
