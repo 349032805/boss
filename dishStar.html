@@ -70,6 +70,7 @@
 		height:350px;
 		background-color: white;
 		padding:0 10px 15px;
+		position: relative;
 	}
 
 	.ranking-main{
@@ -233,6 +234,26 @@
 		display: none;
 	}
 
+	.no-data img{
+		width:22px;
+		height:22px;
+		vertical-align: middle;
+		margin-right:5px;
+	}
+
+	.no-data{
+		position: absolute;
+		top:150px;
+		left:35%;
+		z-index: 10000;
+		color:#999;
+		display: none;
+	}
+
+	.chart-all{
+		position: relative;
+	}
+
 </style>
 
 
@@ -262,6 +283,13 @@
 
 		<!-- 点赞前三名 -->
 		<div class="praise-ranking">
+
+		<!-- 无数据提示 -->
+			<div class="no-data" id="noData">
+				<img src="images/no_data.png">
+				<span>暂无数据 ~</span>
+			</div>
+
 			<div class="ranking-main">
 				<!-- 底部基线 -->
 				<div class="base-line">
@@ -364,13 +392,19 @@
 			<input type="hidden" value="0" id="whichTab">
 
 			<!-- 图表部分 -->
-			<div class="pie-chart" id="main">
-				
+
+			<div class="chart-all">
+				<div class="pie-chart" id="main"></div>
+				<div class="no-data" id="noData2" style="top:100px;">
+					<img src="images/no_data.png">
+					<span>暂无数据 ~</span>
+				</div>
 			</div>
+
 		</div>
 
 
-		<table>
+		<table id="dishTable">
 			<thead>
 				<tr>
 					<th width="25%">菜品名称</th>
@@ -392,10 +426,15 @@
 
 	//柱状图数据
 	function loadColumnData(data){
+		if(data != null && data !="" && data !="null"){
+
 		$("#secondColumnText").hide();
 		$("#thirdColumnText").hide();
 		$("#secondBubble").hide();
 		$("#thirdBubble").hide();
+
+		$(".column").show();
+		$("#noData").hide();
 
 		var firstName =data[0].dishName;
 		var firstPraise = data[0].likeNbr;
@@ -467,14 +506,28 @@
 
 			$("#thirdBubble").show();
 		}
+	}else{
+		$(".column").hide();
+		$("#noData").show();
+	}
 
 		
-	}
+}
 
 	//饼图数据
 	function loadChartData(data){
-		initChart(data);
-		spellTable(data);
+		if(data !=null && data !="" && data !="null"){
+
+			$("#noData2").hide();
+			$("#dishTable").show();
+
+			initChart(data);
+			spellTable(data);
+		}else{
+			$("#noData2").show();
+			$("#dishTable").hide();
+		}
+		
 	}
 
 	function spellTable(data){
