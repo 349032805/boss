@@ -224,165 +224,7 @@
 
 </style>
 
-<script>
 
-	//柱状图数据
-	function loadColumnData(data){
-		var firstName =data[0].dishName;
-		var firstPraise = data[0].likeNbr;
-		var firstSoldNum = data[0].soldQty;
-		var firstPrice = data[0].unitPrice;
-
-		$("#firstName").text(firstName);
-		$("#firstPraise").text(firstPraise);
-		$("#firstSoldNum").text(firstSoldNum);
-		$("#firstPrice").text(firstPrice);
-
-		//**************************************************************
-		//第二个柱子
-		var secondName =data[1].dishName;
-		var secondPraise = data[1].likeNbr;
-		var secondSoldNum = data[1].soldQty;
-		var secondPrice = data[1].unitPrice;
-
-		//第二个好评占比 270是第一个柱子的高度
-		var secondRate = secondPraise/firstPraise;
-		var columnHeight2 = secondRate*270;
-		var topHeight2 = 270 - columnHeight2;
-
- 		$("#secondColumn").css("height",columnHeight2).css("top",topHeight2);
-
-		if(secondRate*100 >50){
-			$("#secondName_high").text(secondName);
-			$("#secondPraise_high").text(secondPraise);
-			$("#secondSoldNum_high").text(secondSoldNum);
-			$("#secondPrice_high").text(secondPrice);
-
-			$("#secondColumnText").show();
-		}
-
-		//**************************************************************
-
-		//第三个柱子
-		var thirdName =data[2].dishName;
-		var thirdPraise = data[2].likeNbr;
-		var thirdSoldNum = data[2].soldQty;
-		var thirdPrice = data[2].unitPrice;
-
-		//第三个好评占比 270是第一个柱子的高度
-		var thirdRate = thirdPraise/firstPraise;
-		var columnHeight3 = thirdRate*270;
-		var topHeight3 = 270 - columnHeight3;
-
- 		$("#thirdColumn").css("height",columnHeight3).css("top",topHeight3);
-
-		if(thirdRate*100 >50){
-			$("#thirdName_high").text(thirdName);
-			$("#thirdPraise_high").text(thirdPraise);
-			$("#thirdSoldNum_high").text(thirdSoldNum);
-			$("#thirdPrice_high").text(thirdPrice);
-
-			$("#thirdColumnText").show();
-		}
-
-		
-	}
-
-	//饼图数据
-	function loadChartData(data){
-		initChart();
-	}
-
-	// window.onload = function(){
-	// 	initChart();
-	// }
-
-	window.onload = function(){
-		var data=
-			[
-			    {
-			      "dishName": "蜂蜜柠檬汁",
-			      "likeNbr": 227,
-			      "percentage": 7.69,
-			      "soldAmt": 2951,
-			      "soldQty": 227,
-			      "unitPrice": 13
-			    },
-			    {
-			      "dishName": "金桔柠檬",
-			      "likeNbr": 226,
-			      "percentage": 8.33,
-			      "soldAmt": 2712,
-			      "soldQty": 226,
-			      "unitPrice": 12
-			    },
-			    {
-			      "dishName": "一颗柠檬",
-			      "likeNbr": 180,
-			      "percentage": 14.29,
-			      "soldAmt": 1575,
-			      "soldQty": 225,
-			      "unitPrice": 7
-			    }
-  			];
-		
-
-		loadColumnData(data);
-	}
-
-	function testRand(){
-		var randNum1 = Math.floor(Math.random()*100+1);
-	  	var randNum2 = Math.floor(Math.random()*100+1);
-
-	  	var temp;
-	  	if(randNum1 < randNum2){
-	  		temp = randNum2;
-	  		randNum2 = randNum1;
-	  		randNum1 = temp;
-	  	}
-	  	// alert(randNum1+":"+randNum2);
-	  	var columnHeight1 = randNum1/100*270; 
-	  	var columnHeight2 = randNum2/100*270;
-	  	// alert(columnHeight1);
-
-	  	var topHeight1 = 270 - columnHeight1;
-	  	var topHeight2 = 270 - columnHeight2;
-	  	$("#secondColumn").css("height",columnHeight1).css("top",topHeight1);
-	  	$("#thirdColumn").css("height",columnHeight2).css("top",topHeight2);
-  	}
-
-	function initChart(){
-		var myChart = echarts.init(document.getElementById('main')); 
-        
-        var option = {
-		    tooltip : {
-		        trigger: 'item',
-		        formatter: "{a} <br/>{b} : {c} ({d}%)"
-		    },
-		    calculable : true,
-		    series : [
-		        {
-		            name:'销售金额',
-		            type:'pie',
-		            radius : [0, 80],
-		            center : ['50%', 110],
-		            roseType : 'radius',
-		            data:[
-		                {value:10, name:'其他'},
-		                {value:5, name:'基围虾'},
-		                {value:15, name:'红烧带鱼'},
-		                {value:25, name:'酸菜鱼'}
-		            ]
-		        }
-		       
-		    ]
-		};
-                    
-
-        // 为echarts对象加载数据 
-        myChart.setOption(option); 
-	}
-</script>
   </head>
 	
 <div id="dishStar">
@@ -449,31 +291,31 @@
 								<div class="position-level">
 
 									<div id="thirdColumnText" style="display: none;">
-									 	<p class="dish-name" id="thirdName_high">鱼香肉丝</p>
+									 	<p class="dish-name" id="thirdName_high"></p>
 										 <div class="praise-num">
-										 	<img src="images/praise.png" class="praise-icon"><span id="thirdPraise_high">50</span>
+										 	<img src="images/praise.png" class="praise-icon"><span id="thirdPraise_high"></span>
 										 </div>
 										 <div class="split-line"></div>
 										 <div class="sales-price">
-										 	<p>销量:<span id="thirdSoldNum_high">100</span></p>
-										 	<p>单价:¥ <span id="thirdPrice_high">100</span></p>
+										 	<p>销量:<span id="thirdSoldNum_high"></span></p>
+										 	<p>单价:¥ <span id="thirdPrice_high"></span></p>
 										 </div>
 									</div>	
 
 									 <!-- 有可能的外部倒挂 -->
-									<!--  <div class="out-tip">
+									 <div class="out-tip" id="thirdBubble" style="display: none;">
 									 		<div class="talkbubble">
-									 			<p class="dish-name">鱼香肉丝</p>
+									 			<p class="dish-name" id="thirdName_low"></p>
 												 <div class="praise-num">
-												 	<img src="images/praise.png" class="praise-icon">50
+												 	<img src="images/praise.png" class="praise-icon"><span id="thirdPraise_low"></span>
 												 </div>
 												 <div class="split-line"></div>
 												 <div class="sales-price">
-												 	<p>销量:100</p>
-												 	<p>单价:¥ 180</p>
+												 	<p>销量:<span id="thirdSoldNum_low"></span></p>
+												 	<p>单价:¥ <span id="thirdPrice_low"></span></p>
 												 </div>
 									 		</div>
-									 </div> -->
+									 </div>
 
 								 </div>
 							</div>
@@ -541,8 +383,179 @@
 				</tr>
 			</tbody>
 		</table>
-
 </div>
+</body>
 
-		</body>
+<script>
+
+	//柱状图数据
+	function loadColumnData(data){
+		$("#secondColumnText").hide();
+		$("#thirdColumnText").hide();
+
+		$("#thirdBubble").hide();
+
+		var firstName =data[0].dishName;
+		var firstPraise = data[0].likeNbr;
+		var firstSoldNum = data[0].soldQty;
+		var firstPrice = data[0].unitPrice;
+
+		$("#firstName").text(firstName);
+		$("#firstPraise").text(firstPraise);
+		$("#firstSoldNum").text(firstSoldNum);
+		$("#firstPrice").text(firstPrice);
+
+		//**************************************************************
+		//第二个柱子
+		var secondName =data[1].dishName;
+		var secondPraise = data[1].likeNbr;
+		var secondSoldNum = data[1].soldQty;
+		var secondPrice = data[1].unitPrice;
+
+		//第二个好评占比 270是第一个柱子的高度
+		var secondRate = secondPraise/firstPraise;
+		var columnHeight2 = secondRate*270;
+		var topHeight2 = 270 - columnHeight2;
+
+ 		$("#secondColumn").css("height",columnHeight2).css("top",topHeight2);
+
+		if(secondRate*100 >50){
+			$("#secondName_high").text(secondName);
+			$("#secondPraise_high").text(secondPraise);
+			$("#secondSoldNum_high").text(secondSoldNum);
+			$("#secondPrice_high").text(secondPrice);
+
+			$("#secondColumnText").show();
+		}
+
+		//**************************************************************
+
+		//第三个柱子
+		var thirdName =data[2].dishName;
+		var thirdPraise = data[2].likeNbr;
+		var thirdSoldNum = data[2].soldQty;
+		var thirdPrice = data[2].unitPrice;
+
+		//第三个好评占比 270是第一个柱子的高度
+		var thirdRate = thirdPraise/firstPraise;
+		var columnHeight3 = thirdRate*270;
+		var topHeight3 = 270 - columnHeight3;
+
+ 		$("#thirdColumn").css("height",columnHeight3).css("top",topHeight3);
+
+		if(thirdRate*100 >50){
+			$("#thirdName_high").text(thirdName);
+			$("#thirdPraise_high").text(thirdPraise);
+			$("#thirdSoldNum_high").text(thirdSoldNum);
+			$("#thirdPrice_high").text(thirdPrice);
+
+			$("#thirdColumnText").show();
+		}else{
+			$("#thirdName_low").text(thirdName);
+			$("#thirdPraise_low").text(thirdPraise);
+			$("#thirdSoldNum_low").text(thirdSoldNum);
+			$("#thirdPrice_low").text(thirdPrice);
+
+			$("#thirdBubble").show();
+		}
+
+		
+	}
+
+	//饼图数据
+	function loadChartData(data){
+		initChart();
+	}
+
+	// window.onload = function(){
+	// 	initChart();
+	// }
+
+	window.onload = function(){
+		var data=
+			[
+			    {
+			      "dishName": "蜂蜜柠檬汁",
+			      "likeNbr": 227,
+			      "percentage": 7.69,
+			      "soldAmt": 2951,
+			      "soldQty": 227,
+			      "unitPrice": 13
+			    },
+			    {
+			      "dishName": "金桔柠檬",
+			      "likeNbr": 226,
+			      "percentage": 8.33,
+			      "soldAmt": 2712,
+			      "soldQty": 226,
+			      "unitPrice": 12
+			    },
+			    {
+			      "dishName": "一颗柠檬",
+			      "likeNbr": 80,
+			      "percentage": 14.29,
+			      "soldAmt": 1575,
+			      "soldQty": 225,
+			      "unitPrice": 7
+			    }
+  			];
+		
+
+		loadColumnData(data);
+	}
+
+	function testRand(){
+		var randNum1 = Math.floor(Math.random()*100+1);
+	  	var randNum2 = Math.floor(Math.random()*100+1);
+
+	  	var temp;
+	  	if(randNum1 < randNum2){
+	  		temp = randNum2;
+	  		randNum2 = randNum1;
+	  		randNum1 = temp;
+	  	}
+	  	// alert(randNum1+":"+randNum2);
+	  	var columnHeight1 = randNum1/100*270; 
+	  	var columnHeight2 = randNum2/100*270;
+	  	// alert(columnHeight1);
+
+	  	var topHeight1 = 270 - columnHeight1;
+	  	var topHeight2 = 270 - columnHeight2;
+	  	$("#secondColumn").css("height",columnHeight1).css("top",topHeight1);
+	  	$("#thirdColumn").css("height",columnHeight2).css("top",topHeight2);
+  	}
+
+	function initChart(){
+		var myChart = echarts.init(document.getElementById('main')); 
+        
+        var option = {
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    calculable : true,
+		    series : [
+		        {
+		            name:'销售金额',
+		            type:'pie',
+		            radius : [0, 80],
+		            center : ['50%', 110],
+		            roseType : 'radius',
+		            data:[
+		                {value:10, name:'其他'},
+		                {value:5, name:'基围虾'},
+		                {value:15, name:'红烧带鱼'},
+		                {value:25, name:'酸菜鱼'}
+		            ]
+		        }
+		       
+		    ]
+		};
+                    
+
+        // 为echarts对象加载数据 
+        myChart.setOption(option); 
+	}
+</script>
+
 </html>

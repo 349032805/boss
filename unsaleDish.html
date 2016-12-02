@@ -3,9 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-     <script src="jquery.min.js"></script>
      <link rel="stylesheet" href="common.css">
-     <script src="periodDate.js"></script>
+    
 <style type="text/css">
 	#unsaleDish{
 		background-color: white;
@@ -85,47 +84,7 @@
 
 </style>
 
-<script>
 
-	function loadData(data){
-		if(data !="" && data !=null){
-			$(".no-data").hide();
-
-		var dishes = data.dishes;
-		var page = data.page;
-		var totalpage = data.totalPage; 
-
-		var content = "";
-		for(var i=0;i<dishes.length;i++){
-			content += "<tr>";
-			content += "<td>"+dishes[i].dishName+"</td>";
-			content += "<td>"+dishes[i].unitPrice+"</td>";
-			content += "<td>"+dishes[i].soldQty+"</td>";
-			content += "<td>"+dishes[i].soldAmt+"</td>";
-			content += "</tr>";
-		}
-		$("#spellData").append(content);
-		if(page < totalpage){
-			$(".loadmore").show();
-		}
-
-		if(page == totalpage){
-			$(".loadmore").hide();
-		}
-
-		$("#spellData tr:even").css("background-color","#D5E3E3");
-		$("#spellData tr:odd").css("background-color","#E3F0F0");
-
-	}else{
-		$(".no-data").show();
-	}
-}
-	function loadmore(){
-		window.open("boss://dishMore");
-	}
-
-
-</script>
   </head>
 	
 <div id="unsaleDish">
@@ -173,6 +132,48 @@
 		<div class="loadmore" onclick="loadmore()">加载更多</div>
 
 </div>
+</body>
 
-		</body>
+ <script src="jquery.min.js"></script>
+ <script src="periodDate.js"></script>
+ 
+<script>
+	function loadData(data){
+		if(data !="" && data !=null){
+			$(".no-data").hide();
+
+		var dishes = data.dishes;
+		var page = data.page;
+		var totalpage = data.totalPage; 
+
+		var content = "";
+		for(var i=0;i<dishes.length;i++){
+			content += "<tr>";
+			content += "<td>"+dishes[i].dishName+"</td>";
+			content += "<td>"+dishes[i].unitPrice+"</td>";
+			content += "<td>"+dishes[i].soldQty+"</td>";
+			content += "<td>"+dishes[i].soldAmt+"</td>";
+			content += "</tr>";
+		}
+		$("#spellData").append(content);
+		if(page < totalpage){
+			$(".loadmore").show();
+		}
+
+		if(page == totalpage){
+			$(".loadmore").hide();
+		}
+
+		$("#spellData tr:even").css("background-color","#D5E3E3");
+		$("#spellData tr:odd").css("background-color","#E3F0F0");
+
+	}else{
+		$(".no-data").show();
+	}
+}
+	function loadmore(){
+		window.open("boss://dishMore");
+	}
+
+</script>
 </html>

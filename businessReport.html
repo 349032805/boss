@@ -5,10 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
      <link rel="stylesheet" href="common.css">
-     <script src="zepto.min.js"></script>
-      <script src="periodDate2.js"></script>
-    <script src="echarts.min.js"></script>
-   
+    
 <style type="text/css">
 	.period{
 		height:40px;
@@ -139,13 +136,189 @@
 		display: none;
 	}
 
-
-
-
 </style>
 
-<script>
+  </head>
+  <body>
+	
+		<div class="period">
+			<button type="button" class="period-btn active-btn" data-type="day">日</button>
+			<button type="button" class="period-btn" data-type="week">周</button>
+			<button type="button" class="period-btn" data-type="month">月</button>
+			<button type="button" class="period-btn" data-type="season">季</button>
+			<button type="button" class="period-btn" data-type="year">年</button>
+		</div>
 
+		<input type="hidden" id="periodType" value="day">
+		<input type="hidden" id="yearParam">
+		<input type="hidden" id="monthParam">
+		<input type="hidden" id="whichSeason">
+		<input type="hidden" id="startDateParam">
+
+		<input type="hidden" id="page" value="businessReport">
+
+		<!-- 时间区间显示 -->
+		<div class="between-date">
+			<span id="leftArrow" onclick="lastPeriod()">&lt;</span> <span style="margin:0 10px;" id="betweenDate"></span> <span id="rightArrow" onclick="nextPeriod()">&gt;</span>
+		</div>
+
+		<div class="total-board">
+			<div class="board float-left" style="background-color: #40E2D7;">
+				<p class="font26" id="topReceive"></p>
+				<p class="font17" style="margin-top:10px;">日实收最高值(￥)</p>
+			</div>
+			<div class="board float-right" style="background-color: #FFC944;">
+				<p class="font26" id="avgReceive"></p>
+				<p class="font17" style="margin-top:10px;">日实收平均值(￥)</p>
+			</div>
+		</div>
+
+		<!-- 折线图表 -->
+		<div class="chart-all">
+			<div class="line-chart" id="main"></div>
+			<div class="no-data">
+				<img src="images/no_data.png">
+				<span>暂无数据 ~</span>
+			</div>
+		</div>
+
+
+		<!-- 综合统计 -->
+		<div class="total-count">
+			<div class="theme">综合统计</div>
+			<div class="row">
+				<div class="box">
+					<img src="images/money_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>应收统计(￥)</p>
+						<p class="total-num" id="shouleReceive"></p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box">
+					<img src="images/money_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>实收统计(￥)</p>
+						<p class="total-num" id="factReceive"></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<img src="images/replace_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>退菜统计(￥)</p>
+						<p class="total-num" id="totalRefund"></p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box">
+					<img src="images/person_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>用餐人数(人)</p>
+						<p class="total-num" id="personNum"></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<img src="images/order_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>订单数(单)</p>
+						<p class="total-num" id="orderNum"></p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box">
+					<img src="images/table_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>翻台率(%)</p>
+						<p class="total-num" id="tableRate"></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<img src="images/bill_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>人均消费(￥)</p>
+						<p class="total-num" id="avgConsume"></p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box"></div>
+			</div>
+		</div>
+
+		<!-- 结账方式 -->
+		<div class="total-count">
+			<div class="theme">结账方式</div>
+			<div class="row">
+				<div class="box">
+					<img src="images/card_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>线下结账(单)</p>
+						<p class="total-num" id="lineCount"></p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box">
+					<img src="images/weixinPay_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>微信支付(单)</p>
+						<p class="total-num" id="weixinPay"></p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 优惠类型 -->
+		<div class="total-count">
+			<div class="theme">优惠类型</div>
+			<div class="row">
+				<div class="box">
+					<img src="images/minus_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>满减(单)</p>
+						<p class="total-num" id="fullMinus"></p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+
+				<div class="box">
+					<img src="images/discount_icon.png" class="index-icons">
+					<div class="index-detail">
+						<p>折扣(单)</p>
+						<p class="total-num" id="discount"></p>
+					</div>
+					 <!-- 分割线 -->
+					 <div class="vertical-line"></div>
+				</div>
+			</div>
+		</div>
+
+		</body>
+
+ <script src="zepto.min.js"></script>
+ <script src="periodDate2.js"></script>
+<script src="echarts.min.js"></script>
+<script>
 	function loadData(data){
 		$('.no-data').hide();
 
@@ -332,183 +505,5 @@ function initChart(xData,yData,yData2){
 
 
 </script>
-
-  </head>
-  <body>
-	
-		<div class="period">
-			<button type="button" class="period-btn active-btn" data-type="day">日</button>
-			<button type="button" class="period-btn" data-type="week">周</button>
-			<button type="button" class="period-btn" data-type="month">月</button>
-			<button type="button" class="period-btn" data-type="season">季</button>
-			<button type="button" class="period-btn" data-type="year">年</button>
-		</div>
-
-		<input type="hidden" id="periodType" value="day">
-		<input type="hidden" id="yearParam">
-		<input type="hidden" id="monthParam">
-		<input type="hidden" id="whichSeason">
-		<input type="hidden" id="startDateParam">
-
-		<input type="hidden" id="page" value="businessReport">
-
-		<!-- 时间区间显示 -->
-		<div class="between-date">
-			<span id="leftArrow" onclick="lastPeriod()">&lt;</span> <span style="margin:0 10px;" id="betweenDate"></span> <span id="rightArrow" onclick="nextPeriod()">&gt;</span>
-		</div>
-
-		<div class="total-board">
-			<div class="board float-left" style="background-color: #40E2D7;">
-				<p class="font26" id="topReceive"></p>
-				<p class="font17" style="margin-top:10px;">日实收最高值(￥)</p>
-			</div>
-			<div class="board float-right" style="background-color: #FFC944;">
-				<p class="font26" id="avgReceive"></p>
-				<p class="font17" style="margin-top:10px;">日实收平均值(￥)</p>
-			</div>
-		</div>
-
-		<!-- 折线图表 -->
-		<div class="chart-all">
-			<div class="line-chart" id="main"></div>
-			<div class="no-data">
-				<img src="images/no_data.png">
-				<span>暂无数据 ~</span>
-			</div>
-		</div>
-
-
-		<!-- 综合统计 -->
-		<div class="total-count">
-			<div class="theme">综合统计</div>
-			<div class="row">
-				<div class="box">
-					<img src="images/money_icon.png" class="index-icons">
-					<div class="index-detail">
-						<p>应收统计(￥)</p>
-						<p class="total-num" id="shouleReceive"></p>
-					</div>
-					 <!-- 分割线 -->
-					 <div class="vertical-line"></div>
-				</div>
-
-				<div class="box">
-					<img src="images/money_icon.png" class="index-icons">
-					<div class="index-detail">
-						<p>实收统计(￥)</p>
-						<p class="total-num" id="factReceive"></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="box">
-					<img src="images/replace_icon.png" class="index-icons">
-					<div class="index-detail">
-						<p>退菜统计(￥)</p>
-						<p class="total-num" id="totalRefund"></p>
-					</div>
-					 <!-- 分割线 -->
-					 <div class="vertical-line"></div>
-				</div>
-
-				<div class="box">
-					<img src="images/person_icon.png" class="index-icons">
-					<div class="index-detail">
-						<p>用餐人数(人)</p>
-						<p class="total-num" id="personNum"></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="box">
-					<img src="images/order_icon.png" class="index-icons">
-					<div class="index-detail">
-						<p>订单数(单)</p>
-						<p class="total-num" id="orderNum"></p>
-					</div>
-					 <!-- 分割线 -->
-					 <div class="vertical-line"></div>
-				</div>
-
-				<div class="box">
-					<img src="images/table_icon.png" class="index-icons">
-					<div class="index-detail">
-						<p>翻台率(%)</p>
-						<p class="total-num" id="tableRate"></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="box">
-					<img src="images/bill_icon.png" class="index-icons">
-					<div class="index-detail">
-						<p>人均消费(￥)</p>
-						<p class="total-num" id="avgConsume"></p>
-					</div>
-					 <!-- 分割线 -->
-					 <div class="vertical-line"></div>
-				</div>
-
-				<div class="box"></div>
-			</div>
-		</div>
-
-		<!-- 结账方式 -->
-		<div class="total-count">
-			<div class="theme">结账方式</div>
-			<div class="row">
-				<div class="box">
-					<img src="images/card_icon.png" class="index-icons">
-					<div class="index-detail">
-						<p>线下结账(单)</p>
-						<p class="total-num" id="lineCount"></p>
-					</div>
-					 <!-- 分割线 -->
-					 <div class="vertical-line"></div>
-				</div>
-
-				<div class="box">
-					<img src="images/weixinPay_icon.png" class="index-icons">
-					<div class="index-detail">
-						<p>微信支付(单)</p>
-						<p class="total-num" id="weixinPay"></p>
-					</div>
-					 <!-- 分割线 -->
-					 <div class="vertical-line"></div>
-				</div>
-			</div>
-		</div>
-
-		<!-- 优惠类型 -->
-		<div class="total-count">
-			<div class="theme">优惠类型</div>
-			<div class="row">
-				<div class="box">
-					<img src="images/minus_icon.png" class="index-icons">
-					<div class="index-detail">
-						<p>满减(单)</p>
-						<p class="total-num" id="fullMinus"></p>
-					</div>
-					 <!-- 分割线 -->
-					 <div class="vertical-line"></div>
-				</div>
-
-				<div class="box">
-					<img src="images/discount_icon.png" class="index-icons">
-					<div class="index-detail">
-						<p>折扣(单)</p>
-						<p class="total-num" id="discount"></p>
-					</div>
-					 <!-- 分割线 -->
-					 <div class="vertical-line"></div>
-				</div>
-			</div>
-		</div>
-
-
-		</body>
 </html>
 
