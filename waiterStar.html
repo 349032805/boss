@@ -202,69 +202,81 @@
 			$(".person-name").css("color","#000");
 
 			//头像
-			var likeHead = data.score.headImgUrl;
-			if(likeHead !=null && likeHead !="" && likeHead !="null"){
-				$("#likeHead").attr("src",likeHead)
-			}else{
-				$("#likeHead").attr("src","images/default_head.png")
-			}
-
-			var serviceHead = data.orders.headImgUrl;
-			if(serviceHead !=null && serviceHead !="" && serviceHead != "null"){
-				$("#serviceHead").attr("src",serviceHead)
-			}else{
-				$("#serviceHead").attr("src","images/default_head.png")
-			}
-
-			var moneyHead = data.price.headImgUrl;
-			if(moneyHead !=null && moneyHead !="" && moneyHead != "null"){
-				$("#moneyHead").attr("src",moneyHead)
-			}else{
-				$("#moneyHead").attr("src","images/default_head.png")
-			}
-
-			var rewardHead = data.reward.headImgUrl;
-			if(rewardHead !=null && rewardHead !="" && rewardHead != "null"){
-				$("#rewardHead").attr("src",rewardHead)
-			}else{
-				$("#rewardHead").attr("src","images/default_head.png")
-			}
-
-			var likeName = data.score.name;
-			if(likeName !=null && likeName !="" && likeName != "null"){
+			
+			var likeObj = data.score;
+			if(likeObj !=null && likeObj !="" && likeObj !="null"){
 				$("#likeName").text(data.score.name);//人气
 				$("#likeScore").text(data.score.value+"分");
+				var likeHead = likeObj.headImgUrl;
+				if(likeHead != null && likeHead != "" && likeHead !="null"){
+					$("#likeHead").attr("src",likeHead);
+				}else{
+					$("#likeHead").attr("src","images/default_head.png");
+				}
+				
 			}else{
 				$("#likeName").text("暂无数据").css("color","#999");
 				$("#likeScore").text("");
+				$("#likeHead").attr("src","images/default_head.png");
 			}
 
-			var serviceName =data.orders.name;
-			if(serviceName !=null && serviceName !="" && serviceName !="null"){
+			var serviceObj = data.orders;
+			if(serviceObj !=null && serviceObj !="" && serviceObj != "null"){
 				$("#serviceName").text(data.orders.name);//单数
 				$("#serviceNum").text(data.orders.value+"桌");
+
+				var serviceHead = serviceObj.headImgUrl;
+				if(serviceHead != null && serviceHead != "" && serviceHead !="null"){
+					$("#serviceHead").attr("src",serviceHead)
+				}else{
+					$("#serviceHead").attr("src","images/default_head.png");
+				}
+				
 			}else{
 				$("#serviceName").text("暂无数据").css("color","#999");
 				$("#serviceNum").text("");
+
+				$("#serviceHead").attr("src","images/default_head.png");
 			}
 
-			var moneyName = data.price.name;
-			if(moneyName !=null && moneyName !="" && moneyName != "null"){
+			var moneyObj = data.price;
+			if(moneyObj !=null && moneyObj !="" && moneyObj != "null"){
 				$("#moneyName").text(data.price.name);//金额
 				$("#moneyTotal").text(data.price.value+"桌");
+
+				var moneyHead = moneyObj.headImgUrl;
+				if(moneyHead != null && moneyHead !="" && moneyHead !="null"){
+					$("#moneyHead").attr("src",moneyHead);
+				}else{
+					$("#moneyHead").attr("src","images/default_head.png");
+				}
+				
 			}else{
 				$("#moneyName").text("暂无数据").css("color","#999");
 				$("#moneyTotal").text("");
+
+				$("#moneyHead").attr("src","images/default_head.png");
 			}
 
-			var rewardName = data.reward.name;
-			if(rewardName !=null && rewardName !="" && rewardName != "null"){
+			var rewardObj = data.reward;
+			if(rewardObj !=null && rewardObj !="" && rewardObj != "null"){
 				$("#rewardName").text(data.reward.name);//赏金
 				$("#rewardTotal").text(data.reward.value+"桌");
+
+				var rewardHead = rewardObj.headImgUrl;
+				if(rewardHead != null && rewardHead !="" && rewardHead !="null"){
+					$("#rewardHead").attr("src",rewardHead);
+				}else{
+					$("#rewardHead").attr("src","images/default_head.png");
+				}
+				
 			}else{
 				$("#rewardName").text("暂无数据").css("color","#999");
 				$("#rewardTotal").text("");
+
+				$("#rewardHead").attr("src","images/default_head.png");
 			}
+			
 			
 		}else{
 			$(".score").text("");
