@@ -5,9 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
      <link rel="stylesheet" href="common.css">
-      <script src="jquery.min.js"></script>
-     <script src="echarts.min.js"></script>
-     <script src="periodDate.js"></script>
+    
 <style type="text/css">
 	.period{
 		height:40px;
@@ -422,7 +420,12 @@
 </div>
 </body>
 
+  <script src="jquery.min.js"></script>
+ <script src="echarts.min.js"></script>
+ <script src="periodDate.js"></script>
+
 <script>
+
 
 	//柱状图数据
 	function loadColumnData(data){
@@ -521,17 +524,20 @@
 			if(firstObj != null && firstObj !="" && firstObj != "null"){
 				$("#noData2").hide();
 				$("#dishTable").show();
+				$(".loadmore").hide();
 
 				initChart(data);
 				spellTable(data);
 			}else{
 				$("#noData2").show();
 				$("#dishTable").hide();
+				initChart("");
 			}
 			
 		}else{
 			$("#noData2").show();
 			$("#dishTable").hide();
+			initChart("");
 		}
 		
 	}
@@ -594,14 +600,27 @@ function iosColor(){
 
 
 	function initChart(data){
-		var firstName =data.dishes[0].dishName;
-		var firstSoldAmt = data.dishes[0].soldAmt;
+		var firstName;
+		var firstSoldAmt;
 
-		var secondName =data.dishes[1].dishName;
-		var secondSoldAmt = data.dishes[1].soldAmt;
+		var secondName;
+		var secondSoldAmt;
 
-		var thirdName =data.dishes[2].dishName;
-		var thirdSoldAmt = data.dishes[2].soldAmt;
+		var thirdName;
+		var thirdSoldAmt;
+
+		if(data != ""){
+			firstName =data.dishes[0].dishName;
+			firstSoldAmt = data.dishes[0].soldAmt;
+
+			secondName =data.dishes[1].dishName;
+			secondSoldAmt = data.dishes[1].soldAmt;
+
+			thirdName =data.dishes[2].dishName;
+			thirdSoldAmt = data.dishes[2].soldAmt;
+		}
+
+	
 
 
 		var myChart = echarts.init(document.getElementById('main')); 
