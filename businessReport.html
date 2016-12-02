@@ -136,6 +136,7 @@
 		left:35%;
 		z-index: 10000;
 		color:#999;
+		display: none;
 	}
 
 
@@ -146,6 +147,8 @@
 <script>
 
 	function loadData(data){
+		$('.no-data').hide();
+
 		var xData =[];
 		var yData = [];
 		var yData2 =[];
@@ -200,6 +203,8 @@
 		$("#weixinPay").text("-");//微信支付
 		$("#fullMinus").text("-");//满减
 		$("#discount").text("-");//折扣单
+
+		$('.no-data').show();
 	}
 
 		initChart(xData,yData,yData2);
