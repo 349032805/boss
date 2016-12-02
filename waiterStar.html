@@ -198,40 +198,40 @@
 <script>
 
 	function loadData(data){
-		if(data !=null && data !=""){
+		if(data !=null && data !="" && data != "null"){
 			$(".person-name").css("color","#000");
 
 			//头像
-			// var likeHead = data.score.head;
-			// if(likeHead !=null && likeHead !=""){
-			// 	$("#likeHead").attr("src",likeHead)
-			// }else{
-			// 	$("#likeHead").attr("src","images/default_head.png")
-			// }
+			var likeHead = data.score.headImgUrl;
+			if(likeHead !=null && likeHead !="" && likeHead !="null"){
+				$("#likeHead").attr("src",likeHead)
+			}else{
+				$("#likeHead").attr("src","images/default_head.png")
+			}
 
-			// var serviceHead = data.orders.head;
-			// if(serviceHead !=null && serviceHead !=""){
-			// 	$("#serviceHead").attr("src",serviceHead)
-			// }else{
-			// 	$("#serviceHead").attr("src","images/default_head.png")
-			// }
+			var serviceHead = data.orders.headImgUrl;
+			if(serviceHead !=null && serviceHead !="" && serviceHead != "null"){
+				$("#serviceHead").attr("src",serviceHead)
+			}else{
+				$("#serviceHead").attr("src","images/default_head.png")
+			}
 
-			// var moneyHead = data.price.head;
-			// if(moneyHead !=null && moneyHead !=""){
-			// 	$("#moneyHead").attr("src",moneyHead)
-			// }else{
-			// 	$("#moneyHead").attr("src","images/default_head.png")
-			// }
+			var moneyHead = data.price.headImgUrl;
+			if(moneyHead !=null && moneyHead !="" && moneyHead != "null"){
+				$("#moneyHead").attr("src",moneyHead)
+			}else{
+				$("#moneyHead").attr("src","images/default_head.png")
+			}
 
-			// var rewardHead = data.reward.head;
-			// if(rewardHead !=null && rewardHead !=""){
-			// 	$("#rewardHead").attr("src",rewardHead)
-			// }else{
-			// 	$("#rewardHead").attr("src","images/default_head.png")
-			// }
+			var rewardHead = data.reward.headImgUrl;
+			if(rewardHead !=null && rewardHead !="" && rewardHead != "null"){
+				$("#rewardHead").attr("src",rewardHead)
+			}else{
+				$("#rewardHead").attr("src","images/default_head.png")
+			}
 
 			var likeName = data.score.name;
-			if(likeName !=null && likeName !=""){
+			if(likeName !=null && likeName !="" && likeName != "null"){
 				$("#likeName").text(data.score.name);//人气
 				$("#likeScore").text(data.score.value+"分");
 			}else{
@@ -240,7 +240,7 @@
 			}
 
 			var serviceName =data.orders.name;
-			if(serviceName !=null && serviceName !=""){
+			if(serviceName !=null && serviceName !="" && serviceName !="null"){
 				$("#serviceName").text(data.orders.name);//单数
 				$("#serviceNum").text(data.orders.value+"桌");
 			}else{
@@ -249,7 +249,7 @@
 			}
 
 			var moneyName = data.price.name;
-			if(moneyName !=null && moneyName !=""){
+			if(moneyName !=null && moneyName !="" && moneyName != "null"){
 				$("#moneyName").text(data.price.name);//金额
 				$("#moneyTotal").text(data.price.value+"桌");
 			}else{
@@ -258,7 +258,7 @@
 			}
 
 			var rewardName = data.reward.name;
-			if(rewardName !=null && rewardName !=""){
+			if(rewardName !=null && rewardName !="" && rewardName != "null"){
 				$("#rewardName").text(data.reward.name);//赏金
 				$("#rewardTotal").text(data.reward.value+"桌");
 			}else{

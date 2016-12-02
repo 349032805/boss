@@ -507,6 +507,7 @@
 }
 
 function changeTab(index){
+	$("#spellData").html("");
 	var whichTab = $("#whichTab").val();
 	if(whichTab != index){
 		if(index =="0"){
@@ -515,7 +516,7 @@ function changeTab(index){
 			window.open("boss://saleAmt");
 		}else{
 			// $("#activeLine").css("left","61%");
-			$("#activeLine").animate({left:"61%"});
+			$("#activeLine").animate({left:"62%"});
 			window.open("boss://saleNum");
 		}
 		$("#whichTab").val(index);
@@ -526,6 +527,10 @@ function changeTab(index){
 
 function loadmore(){
 	window.open("boss://loadMore");
+}
+
+function iosColor(){
+	$("#betweenDate").css("color","#666");
 }
 
 
