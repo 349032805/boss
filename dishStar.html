@@ -284,6 +284,21 @@
 										 </div>
 									</div>
 
+									<!-- 有可能的外部倒挂 -->
+									 <div class="out-tip" id="secondBubble" style="display: none;">
+									 		<div class="talkbubble">
+									 			<p class="dish-name" id="secondName_low"></p>
+												 <div class="praise-num">
+												 	<img src="images/praise.png" class="praise-icon"><span id="secondPraise_low"></span>
+												 </div>
+												 <div class="split-line"></div>
+												 <div class="sales-price">
+												 	<p>销量:<span id="secondSoldNum_low"></span></p>
+												 	<p>单价:¥ <span id="secondPrice_low"></span></p>
+												 </div>
+									 		</div>
+									 </div>
+
 								 </div>
 							</div>
 
@@ -392,7 +407,7 @@
 	function loadColumnData(data){
 		$("#secondColumnText").hide();
 		$("#thirdColumnText").hide();
-
+		$("#secondBubble").hide();
 		$("#thirdBubble").hide();
 
 		var firstName =data[0].dishName;
@@ -426,6 +441,13 @@
 			$("#secondPrice_high").text(secondPrice);
 
 			$("#secondColumnText").show();
+		}else{
+			$("#secondName_low").text(secondName);
+			$("#secondPraise_low").text(secondPraise);
+			$("#secondSoldNum_low").text(secondSoldNum);
+			$("#secondPrice_low").text(secondPrice);
+
+			$("#secondBubble").show();
 		}
 
 		//**************************************************************
@@ -484,7 +506,7 @@
 			    },
 			    {
 			      "dishName": "金桔柠檬",
-			      "likeNbr": 226,
+			      "likeNbr": 96,
 			      "percentage": 8.33,
 			      "soldAmt": 2712,
 			      "soldQty": 226,
@@ -504,26 +526,6 @@
 		loadColumnData(data);
 	}
 
-	function testRand(){
-		var randNum1 = Math.floor(Math.random()*100+1);
-	  	var randNum2 = Math.floor(Math.random()*100+1);
-
-	  	var temp;
-	  	if(randNum1 < randNum2){
-	  		temp = randNum2;
-	  		randNum2 = randNum1;
-	  		randNum1 = temp;
-	  	}
-	  	// alert(randNum1+":"+randNum2);
-	  	var columnHeight1 = randNum1/100*270; 
-	  	var columnHeight2 = randNum2/100*270;
-	  	// alert(columnHeight1);
-
-	  	var topHeight1 = 270 - columnHeight1;
-	  	var topHeight2 = 270 - columnHeight2;
-	  	$("#secondColumn").css("height",columnHeight1).css("top",topHeight1);
-	  	$("#thirdColumn").css("height",columnHeight2).css("top",topHeight2);
-  	}
 
 	function initChart(){
 		var myChart = echarts.init(document.getElementById('main')); 
