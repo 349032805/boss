@@ -265,6 +265,8 @@ var currentFirstDate;
 		$("#spellData").html("");
 		$(".loadmore").hide();
 
+		$("#activeLine").animate({left:"12%"});
+
 		var periodType = $("#periodType").val();
 		var dataStr="";
 		var urlParam ="";
@@ -315,6 +317,8 @@ var currentFirstDate;
 	function nextPeriod(){
 		$("#spellData").html("");
 		$(".loadmore").hide();
+
+		$("#activeLine").animate({left:"12%"});
 
 		var periodType = $("#periodType").val();
 		var dataStr="";
