@@ -263,26 +263,26 @@
 
 		//**************************************************************
 
-		//第二个柱子
+		//第三个柱子
 		var thirdName =data[2].dishName;
-		var secondPraise = data[2].likeNbr;
-		var secondSoldNum = data[2].soldQty;
-		var secondPrice = data[2].unitPrice;
+		var thirdPraise = data[2].likeNbr;
+		var thirdSoldNum = data[2].soldQty;
+		var thirdPrice = data[2].unitPrice;
 
-		//第二个好评占比 270是第一个柱子的高度
-		var secondRate = secondPraise/firstPraise;
-		var columnHeight2 = secondRate*270;
-		var topHeight2 = 270 - columnHeight2;
+		//第三个好评占比 270是第一个柱子的高度
+		var thirdRate = thirdPraise/firstPraise;
+		var columnHeight3 = thirdRate*270;
+		var topHeight3 = 270 - columnHeight3;
 
- 		$("#secondColumn").css("height",columnHeight2).css("top",topHeight2);
+ 		$("#thirdColumn").css("height",columnHeight3).css("top",topHeight3);
 
-		if(secondRate*100 >50){
-			$("#secondName_high").text(secondName);
-			$("#secondPraise_high").text(secondPraise);
-			$("#secondSoldNum_high").text(secondSoldNum);
-			$("#secondPrice_high").text(secondPrice);
+		if(thirdRate*100 >50){
+			$("#thirdName_high").text(thirdName);
+			$("#thirdPraise_high").text(thirdPraise);
+			$("#thirdSoldNum_high").text(thirdSoldNum);
+			$("#thirdPrice_high").text(thirdPrice);
 
-			$("#secondColumnText").show();
+			$("#thirdColumnText").show();
 		}
 
 		
@@ -429,15 +429,16 @@
 							</div>
 							<div class="second-column column" id="secondColumn">
 								<div class="position-level">
-									<div id="secondColumnText">
-									 	<p class="dish-name" id="secondName_high">鱼香肉丝</p>
+
+									<div id="secondColumnText" style="display: none;">
+									 	<p class="dish-name" id="secondName_high"></p>
 										 <div class="praise-num">
-										 	<img src="images/praise.png" class="praise-icon"><span id="secondPraise_high">50</span>
+										 	<img src="images/praise.png" class="praise-icon"><span id="secondPraise_high"></span>
 										 </div>
 										 <div class="split-line"></div>
 										 <div class="sales-price">
-										 	<p>销量:<span id="secondSoldNum_high">100</span></p>
-										 	<p>单价:¥ <span id="secondPrice_high">100</span></p>
+										 	<p>销量:<span id="secondSoldNum_high"></span></p>
+										 	<p>单价:¥ <span id="secondPrice_high"></span></p>
 										 </div>
 									</div>
 
@@ -447,8 +448,20 @@
 							<div class="third-column column" id="thirdColumn">
 								<div class="position-level">
 
+									<div id="thirdColumnText" style="display: none;">
+									 	<p class="dish-name" id="thirdName_high">鱼香肉丝</p>
+										 <div class="praise-num">
+										 	<img src="images/praise.png" class="praise-icon"><span id="thirdPraise_high">50</span>
+										 </div>
+										 <div class="split-line"></div>
+										 <div class="sales-price">
+										 	<p>销量:<span id="thirdSoldNum_high">100</span></p>
+										 	<p>单价:¥ <span id="thirdPrice_high">100</span></p>
+										 </div>
+									</div>	
+
 									 <!-- 有可能的外部倒挂 -->
-									 <div class="out-tip">
+									<!--  <div class="out-tip">
 									 		<div class="talkbubble">
 									 			<p class="dish-name">鱼香肉丝</p>
 												 <div class="praise-num">
@@ -460,7 +473,7 @@
 												 	<p>单价:¥ 180</p>
 												 </div>
 									 		</div>
-									 </div>
+									 </div> -->
 
 								 </div>
 							</div>
