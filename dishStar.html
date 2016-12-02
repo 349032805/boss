@@ -357,10 +357,11 @@
 		<!-- 南丁格尔玫瑰图 -->
 		<div class="dish-ranking">
 			<div class="theme">
-				<div class="theme-title">菜品销售金额排行榜</div>
-				<div class="theme-title">菜品畅销榜</div>
-				<div class="active-line"></div>
+				<div class="theme-title" onclick="changeTab('0')">菜品销售金额排行榜</div>
+				<div class="theme-title" onclick="changeTab('1')">菜品畅销榜</div>
+				<div class="active-line" id="activeLine"></div>
 			</div>
+			<input type="hidden" value="0" id="whichTab">
 
 			<!-- 图表部分 -->
 			<div class="pie-chart" id="main">
@@ -503,6 +504,28 @@
 		$("#spellData tr:even").css("background-color","#D5E3E3");
 		$("#spellData tr:odd").css("background-color","#E3F0F0");
 
+}
+
+function changeTab(index){
+	var whichTab = $("#whichTab").val();
+	if(whichTab != index){
+		if(index =="0"){
+			// $("#activeLine").css("left","12%");
+			$("#activeLine").animate({left:"12%"});
+			window.open("boss://saleAmt");
+		}else{
+			// $("#activeLine").css("left","61%");
+			$("#activeLine").animate({left:"61%"});
+			window.open("boss://saleNum");
+		}
+		$("#whichTab").val(index);
+	}
+
+	
+}
+
+function loadmore(){
+	window.open("boss://loadMore");
 }
 
 
