@@ -52,7 +52,7 @@
   <body>
 	<div>
 		<table>
-			<thead>
+			<thead id="tbHead">
 				<tr>
 					<th width="25%">排名</th>
 					<th width="25%">姓名</th>
@@ -78,7 +78,30 @@
  <script src="zepto.min.js"></script>
 <script>
 	
-	function loadData(data){
+	function loadData(data,listType){
+		var html = "";
+		html += "<tr>";
+		html += "<th width='25%'>排名</th>"
+		html += "<th width='25%'>姓名</th>"
+		if(listType ==0){
+			html +="<th width='25%'>评分</th>";
+			html +="<th width='25%'>评价人次</th>";
+		}
+		if(listType ==1){
+			html +="<th width='25%'>单数</th>";
+			html +="<th width='25%'>金额(元)</th>";
+		}
+		if(listType ==2){
+			html +="<th width='25%'>金额(元)</th>";
+			html +="<th width='25%'>单数</th>";
+		}
+		if(listType ==3){
+			html +="<th width='25%'>金额(元)</th>";
+			html +="<th width='25%'>打赏人次</th>";
+		}
+		html +="</tr>";
+		$("#tbHead").html(html);
+
 		if(data !="" && data!=null){
 
 		var tableData = data;
