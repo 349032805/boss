@@ -646,41 +646,6 @@ function iosColor(){
 	$("#betweenDate").css("color","#666");
 }
 
-window.onload = function(){
-var data=
-[
-   {
-     "dishName": "蜂蜜柠檬汁",
-     "likeNbr": 228,
-     "percentage": 7.69,
-     "soldAmt": 2951,
-     "soldQty": 227,
-     "unitPrice": 13
-   },
-   {
-     "dishName": "金桔柠檬",
-     "likeNbr": 114,
-     "percentage": 8.33,
-     "soldAmt": 2712,
-     "soldQty": 226,
-     "unitPrice": 12
-   },
-   {
-     "dishName": "一颗柠檬",
-     "likeNbr": 80,
-     "percentage": 14.29,
-     "soldAmt": 1575,
-     "soldQty": 225,
-     "unitPrice": 7
-   }
-  ];
-
-  var data2 = {"totalPage":5,"dishes":[{"dishName":"凉拌黄瓜","soldQty":60,"likeNbr":60,"percentage":43,"soldAmt":1110,"unitPrice":18.5},{"dishName":"凉拌田七叶","soldQty":61,"likeNbr":61,"percentage":31,"soldAmt":1823.9000000000001,"unitPrice":29.899999999999999},{"dishName":"川北凉粉","soldQty":62,"likeNbr":62,"percentage":20,"soldAmt":1984,"unitPrice":32},{"dishName":"皮蛋豆腐","soldQty":63,"likeNbr":63,"percentage":5.0800000000000001,"soldAmt":1241.0999999999999,"unitPrice":19.699999999999999},{"dishName":"极品黑鱼子酱","soldQty":64,"likeNbr":64,"percentage":0.050000000000000003,"soldAmt":121536,"unitPrice":1899},{"dishName":"提拉米苏冰淇淋","soldQty":65,"likeNbr":65,"percentage":6.6699999999999999,"soldAmt":975,"unitPrice":15},{"dishName":"一品熊猫手","soldQty":66,"likeNbr":66,"percentage":0.01,"soldAmt":659934,"unitPrice":9999},{"dishName":"糖醋排骨","soldQty":67,"likeNbr":67,"percentage":1.6699999999999999,"soldAmt":4013.3000000000002,"unitPrice":59.899999999999999},{"dishName":"可乐鸡翅","soldQty":68,"likeNbr":68,"percentage":2.0800000000000001,"soldAmt":3264,"unitPrice":48},{"dishName":"油焖大虾","soldQty":69,"likeNbr":69,"percentage":1.49,"soldAmt":4623,"unitPrice":67},{"dishName":"辣炒蛤蜊","soldQty":70,"likeNbr":70,"percentage":1.3,"soldAmt":5390,"unitPrice":77},{"dishName":"椒盐富贵虾","soldQty":71,"likeNbr":71,"percentage":1.1200000000000001,"soldAmt":6319,"unitPrice":89},{"dishName":"红烧东北虎排骨","soldQty":72,"likeNbr":72,"percentage":0.01,"soldAmt":712080,"unitPrice":9890},{"dishName":"碳烤松茸","soldQty":73,"likeNbr":73,"percentage":0.040000000000000001,"soldAmt":171185,"unitPrice":2345},{"dishName":"芝士焗松露","soldQty":74,"likeNbr":74,"percentage":0.14999999999999999,"soldAmt":50172,"unitPrice":678},{"dishName":"台湾茶鸡蛋","soldQty":75,"likeNbr":75,"percentage":0,"soldAmt":75000000,"unitPrice":9999.9899999999998},{"dishName":"雪碧500ml","soldQty":76,"likeNbr":76,"percentage":20,"soldAmt":380,"unitPrice":5},{"dishName":"喜力750ml听装","soldQty":77,"likeNbr":77,"percentage":10,"soldAmt":770,"unitPrice":10},{"dishName":"喜力500ml瓶装","soldQty":78,"likeNbr":78,"percentage":12.5,"soldAmt":624,"unitPrice":8},{"dishName":"柠檬茶","soldQty":79,"likeNbr":79,"percentage":8.3300000000000001,"soldAmt":948,"unitPrice":12}],"page":1};
-
-loadChartData(data2);
-}
-
-
 	function initChart(data){
 		var firstName;
 		var firstPercentage;
@@ -716,11 +681,6 @@ loadChartData(data2);
 		        // formatter: "{a} <br/>{b} : {c} ({d}%)"
 		        formatter: "{a} <br/>{c}%"
 		    },
-		      legend: {
-        x : 'center',
-        y : 'bottom',
-        data:['rose1','rose2','rose3','rose4']
-    },
 		    calculable : true,
 		    color:['#1CD8D5', '#40E25D','#FFC944','#ED7CCB'],
 		    series : [
