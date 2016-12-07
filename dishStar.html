@@ -427,8 +427,8 @@
 			<thead>
 				<tr>
 					<th width="25%">菜品名称</th>
-					<th width="25%">销售金额</th>
-					<th width="25%">金额占比</th>
+					<th width="25%">销售金额(元)</th>
+					<th width="25%">金额占比(%)</th>
 					<th width="25%">销量</th>
 				</tr>
 			</thead>
@@ -568,9 +568,9 @@
 		for(var i=0;i<dishes.length;i++){
 			content += "<tr>";
 			content += "<td>"+dishes[i].dishName+"</td>";
-			content += "<td>"+dishes[i].unitPrice+"</td>";
-			content += "<td>"+dishes[i].soldQty+"</td>";
 			content += "<td>"+dishes[i].soldAmt+"</td>";
+			content += "<td>"+dishes[i].percentage+"</td>";
+			content += "<td>"+dishes[i].soldQty+"</td>";
 			content += "</tr>";
 		}
 		$("#spellData").append(content);
@@ -592,12 +592,12 @@ function changeTab(index){
 	var whichTab = $("#whichTab").val();
 	if(whichTab != index){
 		if(index =="0"){
-			// $("#activeLine").css("left","12%");
-			$("#activeLine").animate({left:"12%"});
+			$("#activeLine").css("left","12%");
+			// $("#activeLine").animate({left:"12%"});
 			window.open("boss://saleAmt");
 		}else{
-			// $("#activeLine").css("left","61%");
-			$("#activeLine").animate({left:"62%"});
+			$("#activeLine").css("left","62%");
+			// $("#activeLine").animate({left:"62%"});
 			window.open("boss://saleNum");
 		}
 		$("#whichTab").val(index);
