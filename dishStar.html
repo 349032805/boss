@@ -304,7 +304,6 @@
 								 <div class="split-line"></div>
 								 <div class="sales-price">
 								 	<p>销量:<span id="firstSoldNum"></span></p>
-								 	<p>单价:¥ <span id="firstPrice"></span></p>
 								 </div>
 							</div>
 							<div class="second-column column" id="secondColumn">
@@ -318,7 +317,6 @@
 										 <div class="split-line"></div>
 										 <div class="sales-price">
 										 	<p>销量:<span id="secondSoldNum_high"></span></p>
-										 	<p>单价:¥ <span id="secondPrice_high"></span></p>
 										 </div>
 									</div>
 
@@ -332,7 +330,6 @@
 												 <div class="split-line"></div>
 												 <div class="sales-price">
 												 	<p>销量:<span id="secondSoldNum_low"></span></p>
-												 	<p>单价:¥ <span id="secondPrice_low"></span></p>
 												 </div>
 									 		</div>
 									 </div>
@@ -351,7 +348,6 @@
 										 <div class="split-line"></div>
 										 <div class="sales-price">
 										 	<p>销量:<span id="thirdSoldNum_high"></span></p>
-										 	<p>单价:¥ <span id="thirdPrice_high"></span></p>
 										 </div>
 									</div>	
 
@@ -365,7 +361,6 @@
 												 <div class="split-line"></div>
 												 <div class="sales-price">
 												 	<p>销量:<span id="thirdSoldNum_low"></span></p>
-												 	<p>单价:¥ <span id="thirdPrice_low"></span></p>
 												 </div>
 									 		</div>
 									 </div>
@@ -426,7 +421,37 @@
  <script src="periodDate.js"></script>
 
 <script>
+window.onload = function(){
+	var data=
+[
+   {
+     "dishName": "蜂蜜柠檬汁",
+     "likeNbr": 228,
+     "percentage": 7.69,
+     "soldAmt": 2951,
+     "soldQty": 227,
+     "unitPrice": 13
+   },
+   {
+     "dishName": "金桔柠檬",
+     "likeNbr": 114,
+     "percentage": 8.33,
+     "soldAmt": 2712,
+     "soldQty": 226,
+     "unitPrice": 12
+   },
+   {
+     "dishName": "一颗柠檬",
+     "likeNbr": 80,
+     "percentage": 14.29,
+     "soldAmt": 1575,
+     "soldQty": 225,
+     "unitPrice": 7
+   }
+  ];
 
+loadColumnData(data);
+}
 
 	//柱状图数据
 	function loadColumnData(data){
@@ -440,6 +465,9 @@
 		$(".column").show();
 		$("#noData").hide();
 
+		//第一个柱子的高度
+		var _firstColumnHeight = 270;
+
 		var firstName =data[0].dishName;
 		var firstPraise = data[0].likeNbr;
 		var firstSoldNum = data[0].soldQty;
@@ -448,19 +476,17 @@
 		$("#firstName").text(firstName);
 		$("#firstPraise").text(firstPraise);
 		$("#firstSoldNum").text(firstSoldNum);
-		$("#firstPrice").text(firstPrice);
 
 		//**************************************************************
 		//第二个柱子
 		var secondName =data[1].dishName;
 		var secondPraise = data[1].likeNbr;
 		var secondSoldNum = data[1].soldQty;
-		var secondPrice = data[1].unitPrice;
 
 		//第二个好评占比 270是第一个柱子的高度
 		var secondRate = secondPraise/firstPraise;
-		var columnHeight2 = secondRate*270;
-		var topHeight2 = 270 - columnHeight2;
+		var columnHeight2 = secondRate*_firstColumnHeight;
+		var topHeight2 = _firstColumnHeight - columnHeight2;
 
  		$("#secondColumn").css("height",columnHeight2).css("top",topHeight2);
 
@@ -468,14 +494,12 @@
 			$("#secondName_high").text(secondName);
 			$("#secondPraise_high").text(secondPraise);
 			$("#secondSoldNum_high").text(secondSoldNum);
-			$("#secondPrice_high").text(secondPrice);
 
 			$("#secondColumnText").show();
 		}else{
 			$("#secondName_low").text(secondName);
 			$("#secondPraise_low").text(secondPraise);
 			$("#secondSoldNum_low").text(secondSoldNum);
-			$("#secondPrice_low").text(secondPrice);
 
 			$("#secondBubble").show();
 		}
@@ -490,8 +514,8 @@
 
 		//第三个好评占比 270是第一个柱子的高度
 		var thirdRate = thirdPraise/firstPraise;
-		var columnHeight3 = thirdRate*270;
-		var topHeight3 = 270 - columnHeight3;
+		var columnHeight3 = thirdRate*_firstColumnHeight;
+		var topHeight3 = _firstColumnHeight - columnHeight3;
 
  		$("#thirdColumn").css("height",columnHeight3).css("top",topHeight3);
 
@@ -499,14 +523,12 @@
 			$("#thirdName_high").text(thirdName);
 			$("#thirdPraise_high").text(thirdPraise);
 			$("#thirdSoldNum_high").text(thirdSoldNum);
-			$("#thirdPrice_high").text(thirdPrice);
 
 			$("#thirdColumnText").show();
 		}else{
 			$("#thirdName_low").text(thirdName);
 			$("#thirdPraise_low").text(thirdPraise);
 			$("#thirdSoldNum_low").text(thirdSoldNum);
-			$("#thirdPrice_low").text(thirdPrice);
 
 			$("#thirdBubble").show();
 		}
