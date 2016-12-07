@@ -4,6 +4,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta name="format-detection" content="telephone=no, address=no">
      <link rel="stylesheet" href="common.css">
     
 <style type="text/css">
@@ -90,8 +94,8 @@
 
 	.column-board{
 		width:300px;
-		height:270px;
-		/*background-color: yellow;*/
+		/*height:270px;*/
+		height:160px;
 		z-index: 100;
 		position: absolute;
 		bottom: 3px;
@@ -113,7 +117,7 @@
 		position: absolute;
 		top: 0;
 		left:0;
-		height:270px;
+		height:160px;
 	}
 
 	.second-column{
@@ -122,7 +126,6 @@
 		position: absolute;
 		top: 135px;
 		left:103px;
-		height:135px;
 	}
 
 	.position-level{
@@ -136,7 +139,6 @@
 		position: absolute;
 		top: 230px;
 		left:206px;
-		height:40px;
 	}
 
 	.dish-name{
@@ -434,7 +436,7 @@ window.onload = function(){
    },
    {
      "dishName": "金桔柠檬",
-     "likeNbr": 114,
+     "likeNbr": 115,
      "percentage": 8.33,
      "soldAmt": 2712,
      "soldQty": 226,
@@ -466,12 +468,11 @@ loadColumnData(data);
 		$("#noData").hide();
 
 		//第一个柱子的高度
-		var _firstColumnHeight = 270;
+		var _firstColumnHeight = 160;
 
 		var firstName =data[0].dishName;
 		var firstPraise = data[0].likeNbr;
 		var firstSoldNum = data[0].soldQty;
-		var firstPrice = data[0].unitPrice;
 
 		$("#firstName").text(firstName);
 		$("#firstPraise").text(firstPraise);
@@ -510,7 +511,6 @@ loadColumnData(data);
 		var thirdName =data[2].dishName;
 		var thirdPraise = data[2].likeNbr;
 		var thirdSoldNum = data[2].soldQty;
-		var thirdPrice = data[2].unitPrice;
 
 		//第三个好评占比 270是第一个柱子的高度
 		var thirdRate = thirdPraise/firstPraise;
