@@ -69,7 +69,7 @@
 	}
 
 	.praise-ranking{
-		height:350px;
+		height:288px;
 		background-color: white;
 		padding:0 10px 15px;
 		position: relative;
@@ -79,8 +79,9 @@
 		height:100%;
 		/*background-color: #19C7A8;*/
 		background-image: linear-gradient(to bottom, #19C7A8 60%, #00BEBD);
-		padding-top:310px;
+		padding-top:250px;
 		border-radius: 4px;
+		position: relative;
 	}
 
 	.base-line{
@@ -255,6 +256,21 @@
 		position: relative;
 	}
 
+	.column-theme{
+		width:100%;
+		height:40px;
+		line-height: 40px;
+		position: absolute;
+		top:0;
+		left:0;
+		z-index: 200;
+		opacity: 1;
+		font-size: 14px;
+		color:#058381;
+		padding-left:20px;
+		border-bottom: 1px solid #30CFBD;
+	}
+
 </style>
 
 
@@ -291,7 +307,14 @@
 				<span>暂无数据 ~</span>
 			</div>
 
+			
+
 			<div class="ranking-main">
+			<!-- 主题 -->
+			<div class="column-theme">
+				本月菜品人气TOP 3
+			</div>
+
 				<!-- 底部基线 -->
 				<div class="base-line">
 					<!-- 柱状区域 -->
@@ -436,7 +459,7 @@ window.onload = function(){
    },
    {
      "dishName": "金桔柠檬",
-     "likeNbr": 115,
+     "likeNbr": 114,
      "percentage": 8.33,
      "soldAmt": 2712,
      "soldQty": 226,
