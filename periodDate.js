@@ -265,7 +265,8 @@ var currentFirstDate;
 		$("#spellData").html("");
 		$(".loadmore").hide();
 
-		$("#activeLine").animate({left:"12%"});
+		// $("#activeLine").animate({left:"12%"});
+		$("#activeLine").css("left","12%");
 		$("#whichTab").val(0);
 
 		var periodType = $("#periodType").val();
@@ -320,7 +321,8 @@ var currentFirstDate;
 		$(".loadmore").hide();
 
 		$("#whichTab").val(0);
-		$("#activeLine").animate({left:"12%"});
+		// $("#activeLine").animate({left:"12%"});
+		$("#activeLine").css("left","12%");
 
 		var periodType = $("#periodType").val();
 		var dataStr="";
