@@ -423,6 +423,8 @@ $(document).ready(function(){
 	    	initBetweenDate();
 
 	    	reportType = 0;
+	    	$("#unitWord").text("时");
+	    	$("#unitWord2").text("时");
 	    }
 
 	    if(dataType =="week"){
@@ -430,6 +432,8 @@ $(document).ready(function(){
 	    	weekBetweenDate();
 
 	    	reportType = 1;
+	    	$("#unitWord").text("日");
+	    	$("#unitWord2").text("日");
 	    }
 
 	    if(dataType=="month"){
@@ -441,6 +445,8 @@ $(document).ready(function(){
 	    	 $("#betweenDate").text(dataStr);
 
 	    	 reportType = 2;
+	    	 $("#unitWord").text("日");
+	    	$("#unitWord2").text("日");
 	    }
 
 	    if(dataType=="season"){
@@ -449,6 +455,8 @@ $(document).ready(function(){
 	    	 $("#betweenDate").text(dataStr);
 
 	    	 reportType = 3;
+	    	 $("#unitWord").text("月");
+	    	$("#unitWord2").text("月");
 	    }
 
 	    if(dataType=="year"){
@@ -460,6 +468,8 @@ $(document).ready(function(){
 	    	 $("#betweenDate").text(dataStr);
 
 	    	 reportType = 4;
+	    	 $("#unitWord").text("月");
+	    	$("#unitWord2").text("月");
 	    }
 	    var startDateParam = $("#startDateParam").val();
 	    var page = $("#page").val();
