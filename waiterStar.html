@@ -43,7 +43,7 @@
 	.board-content{
 		width:100%;
 		/*min-height: 500px;*/
-		background-color: #6BE7D1;
+		background-image: linear-gradient(to bottom, #6BE7D1, #03BFBD);
 		padding:20px 10px;
 	}
 
@@ -223,7 +223,7 @@
 			var serviceObj = data.orders;
 			if(serviceObj !=null && serviceObj !="" && serviceObj != "null"){
 				$("#serviceName").text(data.orders.name);//单数
-				$("#serviceNum").text(data.orders.value+"桌");
+				$("#serviceNum").text(data.orders.value+"单");
 
 				var serviceHead = serviceObj.headImgUrl;
 				if(serviceHead != null && serviceHead != "" && serviceHead !="null"){
@@ -242,7 +242,7 @@
 			var moneyObj = data.price;
 			if(moneyObj !=null && moneyObj !="" && moneyObj != "null"){
 				$("#moneyName").text(data.price.name);//金额
-				$("#moneyTotal").text(data.price.value+"桌");
+				$("#moneyTotal").text(data.price.value+"元");
 
 				var moneyHead = moneyObj.headImgUrl;
 				if(moneyHead != null && moneyHead !="" && moneyHead !="null"){
@@ -261,7 +261,7 @@
 			var rewardObj = data.reward;
 			if(rewardObj !=null && rewardObj !="" && rewardObj != "null"){
 				$("#rewardName").text(data.reward.name);//赏金
-				$("#rewardTotal").text(data.reward.value+"桌");
+				$("#rewardTotal").text(data.reward.value+"元");
 
 				var rewardHead = rewardObj.headImgUrl;
 				if(rewardHead != null && rewardHead !="" && rewardHead !="null"){
