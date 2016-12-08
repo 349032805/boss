@@ -112,7 +112,8 @@
 	}
 
 	.first-column{
-		padding:60px 5px 0 5px;
+		/*padding:60px 5px 0 5px;*/
+		padding:15px 5px 0 5px;
 		text-align: center;
 		color:#058381;
 		position: absolute;
@@ -223,7 +224,7 @@
 	}
 
 	.pie-chart{
-		height:212px;
+		height:220px;
 	}
 
 	.loadmore{
@@ -779,7 +780,7 @@ function iosColor(){
 		    color:['#1CD8D5', '#40E25D','#FFC944','#ED7CCB'],
 		    series : [
 		        {
-		            name:'销售金额',
+		            name:'金额占比',
 		            type:'pie',
 		            radius : [0, 80],
 		            center : ['50%', 110],
@@ -804,7 +805,10 @@ function iosColor(){
 		            ]
 		        }
 		       
-		    ]
+		    ],
+		      // grid: {
+		      //   y: 40
+		      // }
 		};
                     
 
