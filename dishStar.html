@@ -272,6 +272,33 @@
 		font-weight: 500;
 	}
 
+	.out-tip2{
+		float:left;
+	}
+
+	.talkbubble2 {
+		width: 93px;
+		/*height: 94px;*/
+		background-color: #4BEEC1;
+		position: relative;
+  		border-radius:10px;
+  		text-align: center;
+  		padding:10px 5px;
+	    color: #058381;
+	}
+	.talkbubble2:before {
+		content:"";
+		position: absolute;
+		right: 45%;
+		top: 82px;
+		width: 0;
+		height: 0;
+		border-top: 13px solid transparent;
+		border-right: 12px solid #4BEEC1;
+		border-bottom: 13px solid transparent;
+		transform:rotate(-90deg);
+	}
+
 </style>
 
 
@@ -299,10 +326,10 @@
 			<span id="leftArrow" onclick="lastPeriod()">&lt;</span> <span style="margin:0 10px;" id="betweenDate"></span> <span id="rightArrow" onclick="nextPeriod()">&gt;</span>
 		</div>
 
-		<!-- 点赞前三名 -->
-		<div class="praise-ranking">
 
-		<!-- 无数据提示 -->
+		<!-- 点赞前三名 -->
+		<div class="praise-ranking" id="praiseRanking" style="display: none;">
+
 			<div class="no-data" id="noData">
 				<img src="images/no_data.png">
 				<span>暂无数据 ~</span>
@@ -311,7 +338,6 @@
 			
 
 			<div class="ranking-main">
-			<!-- 主题 -->
 			<div class="column-theme">
 				本月菜品人气TOP 3
 			</div>
@@ -402,6 +428,79 @@
 		</div>
 
 
+
+
+		<!-- 点赞前三名(都为0的状态) -->
+		<div class="praise-ranking" id="praiseRanking2" style="display: none;">
+
+			<div class="ranking-main">
+			<!-- 主题 -->
+			<div class="column-theme">
+				本月菜品人气TOP 3
+			</div>
+
+				<!-- 底部基线 -->
+				<div class="base-line">
+					<!-- 柱状区域 -->
+					<div class="column-board">
+
+						<div style="position: relative;">
+							<div style="position: absolute;top: 86px;left:0">
+
+									 <div class="out-tip2">
+									 		<div class="talkbubble2">
+									 			<p class="dish-name" id="firstName_noData"></p>
+												 <div class="praise-num">
+												 	<img src="images/praise.png" class="praise-icon"><span id="firstPraise_noData"></span>
+												 </div>
+												 <div class="split-line"></div>
+												 <div class="sales-price">
+												 	<p>销量:<span id="firstSoldNum_noData"></span></p>
+												 </div>
+									 		</div>
+									 </div>
+
+									
+									 <div class="out-tip2" style="margin-left:10px;">
+									 		<div class="talkbubble2">
+									 			<p class="dish-name" id="secondName_noData"></p>
+												 <div class="praise-num">
+												 	<img src="images/praise.png" class="praise-icon"><span id="secondPraise_noData"></span>
+												 </div>
+												 <div class="split-line"></div>
+												 <div class="sales-price">
+												 	<p>销量:<span id="secondSoldNum_noData"></span></p>
+												 </div>
+									 		</div>
+									 </div>
+
+
+									
+									 <div class="out-tip2" style="margin-left:10px;">
+									 		<div class="talkbubble2">
+									 			<p class="dish-name" id="thirdName_noData"></p>
+												 <div class="praise-num">
+												 	<img src="images/praise.png" class="praise-icon"><span id="thirdPraise_noData"></span>
+												 </div>
+												 <div class="split-line"></div>
+												 <div class="sales-price">
+												 	<p>销量:<span id="thirdSoldNum_noData"></span></p>
+												 </div>
+									 		</div>
+									 </div>
+
+
+									 </div>
+								 </div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
 		<!-- 南丁格尔玫瑰图 -->
 		<div class="dish-ranking">
 			<div class="theme">
@@ -447,37 +546,6 @@
  <script src="periodDate.js"></script>
 
 <script>
-window.onload = function(){
-var data=
-[
-   {
-     "dishName": "蜂蜜柠檬汁",
-     "likeNbr": 228,
-     "percentage": 7.69,
-     "soldAmt": 2951,
-     "soldQty": 227,
-     "unitPrice": 13
-   },
-   {
-     "dishName": "金桔柠檬",
-     "likeNbr": 115,
-     "percentage": 8.33,
-     "soldAmt": 2712,
-     "soldQty": 226,
-     "unitPrice": 12
-   },
-   {
-     "dishName": "一颗柠檬",
-     "likeNbr": 80,
-     "percentage": 14.29,
-     "soldAmt": 1575,
-     "soldQty": 225,
-     "unitPrice": 7
-   }
-  ];
-
-loadColumnData(data);
-}
 
 	//柱状图数据
 	function loadColumnData(data){
@@ -498,16 +566,43 @@ loadColumnData(data);
 		var firstPraise = data[0].likeNbr;
 		var firstSoldNum = data[0].soldQty;
 
-		$("#firstName").text(firstName);
-		$("#firstPraise").text(firstPraise);
-		$("#firstSoldNum").text(firstSoldNum);
-
-		//**************************************************************
 		//第二个柱子
 		var secondName =data[1].dishName;
 		var secondPraise = data[1].likeNbr;
 		var secondSoldNum = data[1].soldQty;
 
+		//第三个柱子
+		var thirdName =data[2].dishName;
+		var thirdPraise = data[2].likeNbr;
+		var thirdSoldNum = data[2].soldQty;
+
+		if(firstPraise ==0){
+			$("#praiseRanking2").show();
+			$("#praiseRanking").hide();
+
+			$("#firstName_noData").text(firstName);
+			$("#firstPraise_noData").text(firstPraise);
+			$("#firstSoldNum_noData").text(firstSoldNum);
+
+			$("#secondName_noData").text(secondName);
+			$("#secondPraise_noData").text(secondPraise);
+			$("#secondSoldNum_noData").text(secondSoldNum);
+
+			$("#thirdName_noData").text(thirdName);
+			$("#thirdPraise_noData").text(thirdPraise);
+			$("#thirdSoldNum_noData").text(thirdSoldNum);
+
+		}else{
+
+			$("#praiseRanking").show();
+			$("#praiseRanking2").hide();
+
+		$("#firstName").text(firstName);
+		$("#firstPraise").text(firstPraise);
+		$("#firstSoldNum").text(firstSoldNum);
+
+		//**************************************************************
+		
 		//第二个好评占比 270是第一个柱子的高度
 		var secondRate = secondPraise/firstPraise;
 		var columnHeight2 = secondRate*_firstColumnHeight;
@@ -531,10 +626,6 @@ loadColumnData(data);
 
 		//**************************************************************
 
-		//第三个柱子
-		var thirdName =data[2].dishName;
-		var thirdPraise = data[2].likeNbr;
-		var thirdSoldNum = data[2].soldQty;
 
 		//第三个好评占比 270是第一个柱子的高度
 		var thirdRate = thirdPraise/firstPraise;
@@ -556,6 +647,9 @@ loadColumnData(data);
 
 			$("#thirdBubble").show();
 		}
+
+	}
+
 	}else{
 		$(".column").hide();
 		$("#noData").show();
